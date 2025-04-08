@@ -12,7 +12,7 @@ import { FooterComponent } from "./features/layout/footer/footer.component";
     <ion-app>
       <app-header></app-header>
         <ion-router-outlet class="example-content"></ion-router-outlet>
-      <app-footer></app-footer>
+      <!-- <app-footer></app-footer> -->
     </ion-app>
   `
 })
