@@ -17,11 +17,10 @@ import {
 } from '@ionic/angular/standalone';
 
 import { OverlayEventDetail } from '@ionic/core/components';
-
 @Component({
-  selector: 'app-registrar-se',
-  templateUrl: './registrar-se.component.html',
-  styleUrls: ['./registrar-se.component.scss'],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
   imports: [
     FormsModule,
     IonButton,
@@ -37,19 +36,16 @@ import { OverlayEventDetail } from '@ionic/core/components';
     IonInputPasswordToggle 
   ],
 })
+export class LoginComponent  implements OnInit {
 
-export class RegistrarSeComponent  implements OnInit {
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
   
   @ViewChild(IonModal) modal!: IonModal;
 
-  name!: string;
   email!: string;
   password: string = 'admin';
-  eventName!: string;
-  eventType!: string;
 
   cancel() {
     this.modal.dismiss(null, 'cancel');
