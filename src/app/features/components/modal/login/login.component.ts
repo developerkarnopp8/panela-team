@@ -41,7 +41,7 @@ export class LoginComponent  implements OnInit {
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
-  
+
   @ViewChild(IonModal) modal!: IonModal;
 
   email!: string;
@@ -52,13 +52,8 @@ export class LoginComponent  implements OnInit {
   }
 
   confirm() {
-    this.modal.dismiss(this.name, 'confirm');
+    this.modal.dismiss(this.email, 'confirm');
   }
 
-  onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
-    if (event.detail.role === 'confirm') {
-      this.message = `Hello, ${event.detail.data}!`;
-    }
-  }
 
 }

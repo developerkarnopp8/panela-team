@@ -42,7 +42,7 @@ export class RegistrarSeComponent  implements OnInit {
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
-  
+
   @ViewChild(IonModal) modal!: IonModal;
 
   name!: string;
@@ -59,10 +59,5 @@ export class RegistrarSeComponent  implements OnInit {
     this.modal.dismiss(this.name, 'confirm');
   }
 
-  onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
-    if (event.detail.role === 'confirm') {
-      this.message = `Hello, ${event.detail.data}!`;
-    }
-  }
 
 }
