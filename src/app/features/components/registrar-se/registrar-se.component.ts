@@ -13,10 +13,12 @@ import {
   IonTitle,
   IonToolbar,
   IonList,
-  IonInputPasswordToggle 
+  IonInputPasswordToggle,
+  IonIcon,
+  IonSelect,
+  IonSelectOption
 } from '@ionic/angular/standalone';
 
-import { OverlayEventDetail } from '@ionic/core/components';
 
 @Component({
   selector: 'app-registrar-se',
@@ -24,23 +26,17 @@ import { OverlayEventDetail } from '@ionic/core/components';
   styleUrls: ['./registrar-se.component.scss'],
   imports: [
     FormsModule,
-    IonButton,
-    IonButtons,
     IonContent,
-    IonHeader,
     IonInput,
     IonItem,
-    IonModal,
-    IonTitle,
-    IonToolbar,
-    IonList,
-    IonInputPasswordToggle 
+    IonInputPasswordToggle,
+    IonSelect,
+    IonSelectOption
   ],
 })
 
 export class RegistrarSeComponent  implements OnInit {
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
   @ViewChild(IonModal) modal!: IonModal;

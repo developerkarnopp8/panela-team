@@ -7,13 +7,11 @@
   </div>
 
   <div class="input-container"> 
-    <ion-button class="button-register" shape="round" id="open-modal" expand="block" >Registrar Lider</ion-button>
+    <ion-button class="button-register" shape="round" expand="block" (click)="registrarSe()">Registrar Lider</ion-button>
   </div>
-  <app-registrar-se></app-registrar-se>
-  <app-login></app-login>
 
   <span class="link">
     <p>Pronto para o jogo?</p>
-    <a id="open-modal-login" expand="block">Ja sou Lider</a>
+    <a (click)="logarSe()" expand="block">Ja sou Lider</a>
   </span>
 </ion-content>

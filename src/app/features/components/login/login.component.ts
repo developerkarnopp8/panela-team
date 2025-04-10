@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import {
   IonButton,
@@ -38,13 +39,17 @@ import { OverlayEventDetail } from '@ionic/core/components';
 })
 export class LoginComponent  implements OnInit {
 
+  constructor(
+    private route: ActivatedRoute,
+    private routes: Router
+  ) {}
+
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
   @ViewChild(IonModal) modal!: IonModal;
 
-  email!: string;
+  email: string = 'gustavokarnopp.dev@gmail.com';
   password: string = 'admin';
 
   cancel() {
@@ -52,8 +57,20 @@ export class LoginComponent  implements OnInit {
   }
 
   confirm() {
-    this.modal.dismiss(this.email, 'confirm');
+    if (this.email && this.password) {
+      this.modal.dismiss(null, 'confirm');
+  
+      // Aguarda o modal fechar antes de redirecionar
+      setTimeout(() => {
+        if (this.routes.url !== '/eventos') {
+          this.routes.navigate(['/eventos'], { replaceUrl: true });
+        }
+      }, 1000);
+    } else {
+      alert('Preencha email e senha!');
+    }
   }
+  
 
 
 }
