@@ -1,21 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
-  IonBackButton,
-  IonButton,
   IonButtons,
-  IonContent,
-  IonHeader,
   IonIcon,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonListHeader,
-  IonRange,
-  IonText,
-  IonTitle,
   IonToggle,
-  IonToolbar,
 } from '@ionic/angular/standalone';
 
 import { addIcons } from 'ionicons';
@@ -27,25 +16,14 @@ import { personCircle, personCircleOutline, sunny, sunnyOutline } from 'ionicons
   styleUrls: ['./toogle-dark-white.component.scss'],
   imports: [
     FormsModule,
-    IonBackButton,
-    IonButton,
     IonButtons,
-    IonContent,
-    IonHeader,
     IonIcon,
-    IonItem,
-    IonLabel,
-    IonList,
-    IonListHeader,
-    IonRange,
-    IonText,
-    IonTitle,
     IonToggle,
-    IonToolbar,
+    CommonModule
   ],
 })
 export class ToogleDarkWhiteComponent  implements OnInit {
-
+ 
   paletteToggle = false;
 
   constructor() {

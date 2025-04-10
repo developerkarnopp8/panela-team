@@ -1,24 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import {
-  IonButton,
-  IonButtons,
   IonContent,
-  IonHeader,
   IonInput,
   IonItem,
   IonModal,
-  IonTitle,
-  IonToolbar,
-  IonList,
   IonInputPasswordToggle,
-  IonIcon,
   IonSelect,
-  IonSelectOption
+  IonSelectOption,
+  IonButton,
 } from '@ionic/angular/standalone';
-
 
 @Component({
   selector: 'app-registrar-se',
@@ -31,13 +25,18 @@ import {
     IonItem,
     IonInputPasswordToggle,
     IonSelect,
-    IonSelectOption
+    IonSelectOption,
+    IonButton,
   ],
 })
 
 export class RegistrarSeComponent  implements OnInit {
-  ngOnInit(): void {
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private routes: Router
+  ) {}
+
+  ngOnInit(): void {}
 
   @ViewChild(IonModal) modal!: IonModal;
 
@@ -52,7 +51,13 @@ export class RegistrarSeComponent  implements OnInit {
   }
 
   confirm() {
-    this.modal.dismiss(this.name, 'confirm');
+    if (this.name && this.email && this.password && this.eventName && this.eventType) {
+      if (this.routes.url !== '/registrar') {
+        this.routes.navigate(['/registrar']);
+      }
+  } else {
+    alert('Preencha email e senha!');
+  }
   }
 
 

@@ -5,19 +5,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import {
   IonButton,
-  IonButtons,
   IonContent,
-  IonHeader,
   IonInput,
   IonItem,
   IonModal,
-  IonTitle,
-  IonToolbar,
-  IonList,
   IonInputPasswordToggle 
 } from '@ionic/angular/standalone';
 
-import { OverlayEventDetail } from '@ionic/core/components';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,15 +19,9 @@ import { OverlayEventDetail } from '@ionic/core/components';
   imports: [
     FormsModule,
     IonButton,
-    IonButtons,
     IonContent,
-    IonHeader,
     IonInput,
     IonItem,
-    IonModal,
-    IonTitle,
-    IonToolbar,
-    IonList,
     IonInputPasswordToggle 
   ],
 })
@@ -58,14 +46,10 @@ export class LoginComponent  implements OnInit {
 
   confirm() {
     if (this.email && this.password) {
-      this.modal.dismiss(null, 'confirm');
-  
-      // Aguarda o modal fechar antes de redirecionar
-      setTimeout(() => {
         if (this.routes.url !== '/eventos') {
-          this.routes.navigate(['/eventos'], { replaceUrl: true });
+          this.routes.navigate(['/eventos']);
+          // this.routes.navigate(['/eventos'], { replaceUrl: true });
         }
-      }, 1000);
     } else {
       alert('Preencha email e senha!');
     }

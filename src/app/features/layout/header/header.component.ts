@@ -1,23 +1,55 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { 
   IonFooter,
+  IonButton,
+  IonButtons,
   IonHeader,
   IonTitle,
-  IonToolbar
+  IonToolbar,
+  IonBackButton
  } from '@ionic/angular/standalone';
 import { ToogleDarkWhiteComponent } from "../toogle-dark-white/toogle-dark-white.component";
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
-  imports: [IonFooter, IonHeader, IonTitle, IonToolbar, ToogleDarkWhiteComponent],
+  imports: [
+    IonButtons,
+    IonHeader, 
+    IonTitle, 
+    IonToolbar, 
+    ToogleDarkWhiteComponent,
+    IonBackButton,
+    CommonModule
+  ],
   standalone: true,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent  implements OnInit {
+export class HeaderComponent  implements OnInit, OnChanges {
 
-  constructor() { }
+  verificaRota: boolean = false;
 
-  ngOnInit() {}
+  @Input() currentUrl: string = '';
 
+  constructor(
+    private route: ActivatedRoute,
+    private routes: Router,
+    // private location: Location
+  ) {
+
+  }
+
+  ngOnInit() {
+  
+  }
+
+  ngOnChanges() {
+    this.verificaRota = this.currentUrl.includes('/iniciar');
+  }
+
+  back(){
+    this.routes.navigate(['..'], { relativeTo: this.route });
+  }
 }

@@ -16,7 +16,10 @@ export class IniciarComponent  implements OnInit {
     private routes: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.routes.url,'url');
+    
+  }
 
   registrarSe(){
     if (this.routes.url !== '/registrar') {

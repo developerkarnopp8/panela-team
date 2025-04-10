@@ -7,13 +7,14 @@ import { RegistrarSeComponent } from './features/components/registrar-se/registr
 export const routes: Routes = [
   {
     path: '',
-    // loadComponent: () => import('./features/iniciar/iniciar.component').then(m => m.IniciarComponent), 
-    component: IniciarComponent,
+    redirectTo: '/iniciar', 
+    pathMatch: 'full',
   },
   {
     path: 'iniciar',
-    redirectTo: '', 
+    component: IniciarComponent,
     pathMatch: 'full',
+    title: 'Inicio',
   },
   {
     path: 'login',
