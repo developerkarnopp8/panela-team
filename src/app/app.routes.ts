@@ -3,6 +3,7 @@ import { EventosComponent } from './features/eventos/eventos.component';
 import { IniciarComponent } from './features/iniciar/iniciar.component';
 import { LoginComponent } from './features/components/login/login.component';
 import { RegistrarSeComponent } from './features/components/registrar-se/registrar-se.component';
+import { authGuard } from './core/guards/auth/auth.guard';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,7 @@ export const routes: Routes = [
   {
     path: 'eventos',
     pathMatch: 'full',
+    canActivate: [authGuard],
     component: EventosComponent,
     title: 'Eventos',
   }

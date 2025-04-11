@@ -18,7 +18,7 @@ export class AuthService {
     private http: HttpClient,
     private routes: Router,
   ) {
-    const currentUserStorage  = localStorage.getItem('currentUserToken');
+    const currentUserStorage  = localStorage.getItem('canvas');
     this.currentUserSubject = new BehaviorSubject<any>(currentUserStorage ? JSON.parse(currentUserStorage) : null);
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -31,8 +31,8 @@ export class AuthService {
     return this.http.post<any>(`${environment.baseURL}${environment.basePath}`, dados)
     .pipe(
       map(user => {
-        localStorage.setItem('currentUserToken', JSON.stringify(user));
-        // localStorage.setItem('client_slid', JSON.stringify(dados.client_slid))
+        localStorage.setItem('canvas', JSON.stringify(user.user));
+        sessionStorage.setItem('token', JSON.stringify(user.access_token))
         this.currentUserSubject.next(user);
         if (this.routes.url !== '/eventos') {
           this.routes.navigateByUrl('/eventos')
@@ -42,7 +42,8 @@ export class AuthService {
     }
 
     logout(): void {
-      localStorage.removeItem('currentUserToken');
+      localStorage.removeItem('canvas');
+      sessionStorage.removeItem('token');
       localStorage.removeItem('data_client');
       localStorage.removeItem('client_slid');
       localStorage.removeItem('data_profile');

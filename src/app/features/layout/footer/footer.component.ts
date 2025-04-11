@@ -1,13 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { IonFooter, IonToolbar } from '@ionic/angular/standalone';
+import { IonFooter } from '@ionic/angular/standalone';
 import { TabsFooterAppComponent } from '../../components/tabs/tabs-footer-app/tabs-footer-app.component';
 
 @Component({
   selector: 'app-footer',
   imports: [
     IonFooter,
-    IonToolbar,
     CommonModule,
     TabsFooterAppComponent
   ],

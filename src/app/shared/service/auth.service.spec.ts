@@ -35,13 +35,13 @@ describe('AuthService', () => {
     expect(req.request.method).toBe('POST');
     req.flush(mockUser);
 
-    expect(localStorage.getItem('currentUserToken')).toBe(JSON.stringify(mockUser));
+    expect(localStorage.getItem('canvas')).toBe(JSON.stringify(mockUser));
     expect(service.currentUserValue).toEqual(mockUser);
   });
 
   it('should clear user token on logout', () => {
     service.logout();
-    expect(localStorage.getItem('currentUserToken')).toBeNull();
+    expect(localStorage.getItem('canvas')).toBeNull();
     expect(service.currentUserValue).toBeNull();
   });
 

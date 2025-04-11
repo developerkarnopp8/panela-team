@@ -16,13 +16,13 @@ export class UsersService {
   constructor(
     private http: HttpClient,
   ) {
-    const currentUserStorage  = localStorage.getItem('currentUserToken');
+    const currentUserStorage  = localStorage.getItem('canvas');
     this.currentUserSubject = new BehaviorSubject<any>(currentUserStorage ? JSON.parse(currentUserStorage) : null);
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
   public getTokenStorage(){
-    const currentToken  = localStorage.getItem('currentUserToken');
+    const currentToken  = localStorage.getItem('canvas');
     const token = currentToken ? JSON.parse(currentToken) : null
     const tokken = token.accessToken
     return tokken

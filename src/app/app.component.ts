@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HeaderComponent } from "./features/layout/header/header.component";
 import { FooterComponent } from "./features/layout/footer/footer.component";
 import { CommonModule } from '@angular/common';
+import { AuthService } from './shared/service/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -31,15 +32,34 @@ import { CommonModule } from '@angular/common';
     </ion-app>
   `
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   currentUrl: string = '';
   exibirMenu: boolean = true;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private authService : AuthService
+  ) {
     this.router.events.subscribe(() => {
       this.currentUrl = this.router.url; 
       this.exibirMenu = !['/login', '/iniciar', '/registrar'].includes(this.currentUrl);  
     });
   }
+
+  ngOnInit() {
+    // window.addEventListener('beforeunload', this.handleBeforeUnload);
+  }
+  
+  ngOnDestroy() {
+    // window.removeEventListener('beforeunload', this.handleBeforeUnload);
+  }
+  
+  // handleBeforeUnload = (event: BeforeUnloadEvent) => {
+  //   this.authService.logout(); // Chama o método de logout do AuthService
+  //   // Aqui você pode salvar estado ou fazer um logout silencioso
+  //   console.log('A aba ou navegador foi fechada ou recarregada');
+  //   // Exemplo: salvar estado no localStorage ou notificar backend
+  // };
+  
   
 }

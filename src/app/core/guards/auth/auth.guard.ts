@@ -4,9 +4,12 @@ import { CanActivateFn, Router } from '@angular/router';
 export const authGuard: CanActivateFn = (route, state) => {
 
   const router = inject(Router);
-  const currentUserToken  = localStorage.getItem('currentUserToken');
+  const canvas  = JSON.parse(sessionStorage.getItem('token') || '{}');
+  // const canvas  = sessionStorage.getItem('token');
 
-  if(currentUserToken != null){
+  console.log('canvas', canvas)
+  console.log('sessionStorage', sessionStorage.getItem('token'))
+  if(canvas != null){
     return true
   }else{
     router.navigateByUrl('/iniciar')
