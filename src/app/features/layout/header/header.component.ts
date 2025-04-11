@@ -56,11 +56,14 @@ export class HeaderComponent  implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log('currentUrl', this.currentUrl);
-    this.verificaRota = this.currentUrl.includes('/iniciar') || this.currentUrl.includes('/eventos');
+
+    this.verificaRota = this.currentUrl.includes('/iniciar') || 
+                        this.currentUrl.includes('/eventos');
+
     this.verificaRotaMenu = this.currentUrl.includes('/iniciar') || 
                             this.currentUrl.includes('/registrar') || 
                             this.currentUrl.includes('/login');
+                            
   }
 
   back(){
