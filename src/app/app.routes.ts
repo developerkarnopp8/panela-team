@@ -4,6 +4,7 @@ import { IniciarComponent } from './features/iniciar/iniciar.component';
 import { LoginComponent } from './features/components/login/login.component';
 import { RegistrarSeComponent } from './features/components/registrar-se/registrar-se.component';
 import { authGuard } from './core/guards/auth/auth.guard';
+import { DetailsEventosComponent } from './features/components/details-eventos/details-eventos.component';
 
 export const routes: Routes = [
   {
@@ -35,5 +36,12 @@ export const routes: Routes = [
     canActivate: [authGuard],
     component: EventosComponent,
     title: 'Eventos',
+  },
+  {
+    path: 'details',
+    pathMatch: 'full',
+    canActivate: [authGuard],
+    component: DetailsEventosComponent,
+    title: 'Detalhes Evento',
   }
 ];
