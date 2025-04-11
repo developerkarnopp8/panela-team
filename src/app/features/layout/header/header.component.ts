@@ -69,13 +69,13 @@ export class HeaderComponent  implements OnInit, OnChanges {
   }
 
   back(){
-    
+
     console.log(window.history.length > 1);
     
     if (window.history.length > 1) {
       this.navCtrl.back();
     } else {
-      this.routes.navigate(['/iniciar'], { replaceUrl: true }); // ou outra rota fallback
+      // this.routes.navigate(['/iniciar'], { replaceUrl: true }); // ou outra rota fallback
     }
   }
 }
