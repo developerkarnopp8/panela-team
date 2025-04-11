@@ -2,12 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
 
-import { environment } from '../../../environment/environments.users'
+import { environment } from '../../../environment/environments.eventos'
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class EventosService {
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 
@@ -16,30 +16,29 @@ export class UsersService {
   constructor(
     private http: HttpClient,
   ) {
-    const currentUserStorage  = localStorage.getItem('canvas');
+    const currentUserStorage  = sessionStorage.getItem('token');
     this.currentUserSubject = new BehaviorSubject<any>(currentUserStorage ? JSON.parse(currentUserStorage) : null);
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
   public getTokenStorage(){
-    const currentToken  = localStorage.getItem('canvas');
-    const token = currentToken ? JSON.parse(currentToken) : null
-    const tokken = token.accessToken
-    return tokken
+    const currentToken  = sessionStorage.getItem('token');
+    const token = currentToken ? JSON.parse(currentToken) : null;
+    return token
   }
 
-  //  //? GET ALL TODOS OS USER PELO ID
-  // getUsers(): Observable<any> {
-  //   const token = this.getTokenStorage();
-  //   const headers = { 'Authorization': `Bearer ${token}` };
-  //   return this.http.get<any>(`${environment.baseURL}${environment.basePath}`, { headers })
-  //   .pipe(
-  //     map(response => {
-  //       this.currentUserSubject.next(response);
-  //       return response;
-  //     })
-  //   );
-  // }
+   //? GET ALL TODOS OS USER PELO ID
+  getEventos(): Observable<any> {
+    const token = this.getTokenStorage();
+    const headers = { 'Authorization': `Bearer ${token}` };
+    return this.http.get<any>(`${environment.baseURL}${environment.basePath}`, { headers })
+    .pipe(
+      map(response => {
+        this.currentUserSubject.next(response);
+        return response;
+      })
+    );
+  }
 
   // //  //? GET ALL TODOS OS USER PELO ID
   // getUsersId(id: number): Observable<any> {

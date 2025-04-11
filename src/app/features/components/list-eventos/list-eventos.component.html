@@ -1,9 +1,9 @@
-<ion-content color="light">
-  <ion-list [inset]="true">
-    <ion-item [button]="true" (click)="detailEvento()">
-      <ion-icon color="danger" slot="start" name="list-circle" size="large"></ion-icon>
-      <ion-label>General</ion-label>
-      <ion-note slot="end">6</ion-note>
+<ion-content color="light" fullscreen="true">
+  <ion-list [inset]="true" *ngFor="let evento of eventos">
+    <ion-item  [button]="true" (click)="detailEvento(evento)">
+      <ion-icon class="icon-bask" slot="start" name="basketball" size="large"></ion-icon>
+      <ion-label>{{ evento.name }}</ion-label>
+      <ion-note slot="end">Tipo: {{ evento.type }}</ion-note>
     </ion-item>
   </ion-list>
 </ion-content>

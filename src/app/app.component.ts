@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnDestroy, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HeaderComponent } from "./features/layout/header/header.component";
@@ -11,6 +11,7 @@ import { NavBarComponent } from "./features/components/nav-bar/nav-bar.component
   selector: 'app-root',
   standalone: true,
   imports: [IonicModule, HeaderComponent, FooterComponent, CommonModule, NavBarComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <ion-app>
     <ion-menu contentId="main-content" *ngIf="exibirMenu">
