@@ -13,8 +13,9 @@ import {
  } from '@ionic/angular/standalone';
 import { ToogleDarkWhiteComponent } from "../toogle-dark-white/toogle-dark-white.component";
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { MenuBarComponent } from "../../components/menu-bar/menu-bar.component";
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-header',
@@ -46,7 +47,8 @@ export class HeaderComponent  implements OnInit, OnChanges {
   constructor(
     private route: ActivatedRoute,
     private routes: Router,
-    // private location: Location
+    private location: Location,
+    private navCtrl: NavController
   ) {
 
   }
@@ -67,6 +69,10 @@ export class HeaderComponent  implements OnInit, OnChanges {
   }
 
   back(){
-    this.routes.navigate(['..'], { relativeTo: this.route });
+    if (window.history.length > 1) {
+      this.location.back();
+    } else {
+      this.routes.navigate(['/iniciar'], { replaceUrl: true }); // ou outra rota fallback
+    }
   }
 }

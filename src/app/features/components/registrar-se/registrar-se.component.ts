@@ -53,7 +53,7 @@ export class RegistrarSeComponent  implements OnInit {
   confirm() {
     if (this.name && this.email && this.password && this.eventName && this.eventType) {
       if (this.routes.url !== '/registrar') {
-        this.routes.navigate(['/registrar']);
+        this.routes.navigate(['/registrar'], { replaceUrl: true });
       }
   } else {
     alert('Preencha email e senha!');

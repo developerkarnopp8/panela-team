@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import {
   IonContent,
-  IonHeader,
   IonIcon,
   IonItem,
   IonLabel,
   IonList,
   IonNote,
-  IonText,
-  IonTitle,
-  IonToolbar,
 } from '@ionic/angular/standalone';
 
 import { addIcons } from 'ionicons';
@@ -23,12 +20,21 @@ import { chevronForward, listCircle } from 'ionicons/icons';
 })
 export class ListEventosComponent  implements OnInit {
 
-  constructor() { 
+  constructor(
+    private route: Router
+  ) { 
     addIcons({ chevronForward, listCircle });
    }
 
   ngOnInit() {
 
+  }
+
+  detailEvento(){
+    if (this.route.url !== '/details') {
+      this.route.navigate(['/details'], { replaceUrl: true });
+    }
+    console.log("Detail evento clicked")
   }
 
 }

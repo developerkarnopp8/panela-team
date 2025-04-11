@@ -35,7 +35,8 @@ export class AuthService {
         sessionStorage.setItem('token', JSON.stringify(user.access_token))
         this.currentUserSubject.next(user);
         if (this.routes.url !== '/eventos') {
-          this.routes.navigateByUrl('/eventos')
+          this.routes.navigate(['/eventos'], { replaceUrl: true });
+          // this.routes.navigateByUrl('/eventos')
         }
         return user;
       }));
@@ -47,7 +48,8 @@ export class AuthService {
       localStorage.removeItem('data_client');
       localStorage.removeItem('client_slid');
       localStorage.removeItem('data_profile');
-      this.routes.navigateByUrl('/iniciar')
+      this.routes.navigate(['/iniciar'], { replaceUrl: true });
+      // this.routes.navigateByUrl('/iniciar')
       this.currentUserSubject.next(null);
   }
 }
