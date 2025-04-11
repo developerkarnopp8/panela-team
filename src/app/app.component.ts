@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   template: `
     <ion-app>
 
-       <!-- ✅ MENU lateral global -->
+       <!--  MENU lateral global Colocar em um arquivo especifico -->
        <ion-menu contentId="main-content" *ngIf="exibirMenu">
         <ion-header>
           <ion-toolbar color="tertiary">
@@ -39,10 +39,6 @@ export class AppComponent {
     this.router.events.subscribe(() => {
       this.currentUrl = this.router.url; 
       this.exibirMenu = !['/login', '/iniciar', '/registrar'].includes(this.currentUrl);  
-
-      console.log('currentUrl', this.currentUrl);
-      console.log('exibirMenu', this.exibirMenu);
-      
     });
   }
   
