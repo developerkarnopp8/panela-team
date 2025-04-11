@@ -17,7 +17,7 @@ export class IniciarComponent  implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.routes.url,'url');
+    // console.log(this.routes.url,'url');
     
   }
 
@@ -26,11 +26,11 @@ export class IniciarComponent  implements OnInit {
       this.routes.navigate(['/registrar'], { replaceUrl: true });
     }
   }
+
   logarSe(){
     if (this.routes.url !== '/login') {
       this.routes.navigate(['/login'], { replaceUrl: true });
     }
-  }
-      
+  }  
 
 }

@@ -36,7 +36,6 @@ export class AuthService {
         this.currentUserSubject.next(user);
         if (this.routes.url !== '/eventos') {
           this.routes.navigate(['/eventos'], { replaceUrl: true });
-          // this.routes.navigateByUrl('/eventos')
         }
         return user;
       }));
@@ -49,7 +48,6 @@ export class AuthService {
       localStorage.removeItem('client_slid');
       localStorage.removeItem('data_profile');
       this.routes.navigate(['/iniciar'], { replaceUrl: true });
-      // this.routes.navigateByUrl('/iniciar')
       this.currentUserSubject.next(null);
   }
 }

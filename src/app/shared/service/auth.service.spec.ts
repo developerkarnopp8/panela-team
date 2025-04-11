@@ -25,7 +25,7 @@ describe('AuthService', () => {
     const mockUser = {
       token: '12345'
     };
-    const loginData = { client_slid: 'abc', user_slid: 'xyz', password: 'pass' };
+    const loginData = { email: 'abc', password: 'pass' };
 
     service.login(loginData).subscribe(user => {
       expect(user).toEqual(mockUser);
