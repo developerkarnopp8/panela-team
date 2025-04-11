@@ -1,13 +1,21 @@
 <ion-header [translucent]="true" class="toolbar-header">
+
   <ion-toolbar *ngIf="!verificaRota" color="primary" class="toolbar-header">
     <ion-buttons slot="start">
       <ion-back-button default-href="#" (click)="back()"></ion-back-button>
     </ion-buttons>
     <ion-title>Voltar</ion-title>
   </ion-toolbar>
+
+  <ion-toolbar *ngIf="!verificaRotaMenu">
+    <app-menu-bar></app-menu-bar>
+  </ion-toolbar>
+
   <ion-toolbar>
     <ion-title>Panela Team</ion-title>
   </ion-toolbar>
   <app-toogle-dark-white></app-toogle-dark-white>
+
 </ion-header>
+
 
