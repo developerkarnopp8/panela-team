@@ -5,25 +5,17 @@ import { HeaderComponent } from "./features/layout/header/header.component";
 import { FooterComponent } from "./features/layout/footer/footer.component";
 import { CommonModule } from '@angular/common';
 import { AuthService } from './shared/service/auth.service';
+import { NavBarComponent } from "./features/components/nav-bar/nav-bar.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [IonicModule, HeaderComponent, FooterComponent, CommonModule],
+  imports: [IonicModule, HeaderComponent, FooterComponent, CommonModule, NavBarComponent],
   template: `
     <ion-app>
-
-       <!--  MENU lateral global Colocar em um arquivo especifico -->
-       <ion-menu contentId="main-content" *ngIf="exibirMenu">
-        <ion-header>
-          <ion-toolbar color="tertiary">
-            <ion-title>Menu</ion-title>
-          </ion-toolbar>
-        </ion-header>
-        <ion-content class="ion-padding">
-          <p>This is the menu content.</p>
-        </ion-content>
-      </ion-menu> 
+    <ion-menu contentId="main-content" *ngIf="exibirMenu">
+      <app-nav-bar ></app-nav-bar>
+    </ion-menu>
 
       <app-header [currentUrl]="currentUrl"></app-header>
 

@@ -1,0 +1,8 @@
+ion-toolbar.toolbar{
+    background-color: var(--ion-color-primary) !important;
+    color: var(--color-on-primary);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+}
