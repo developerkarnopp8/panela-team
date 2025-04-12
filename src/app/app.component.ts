@@ -17,9 +17,7 @@ import { NavBarComponent } from "./features/components/nav-bar/nav-bar.component
     <ion-menu contentId="main-content" *ngIf="exibirMenu">
       <app-nav-bar ></app-nav-bar>
     </ion-menu>
-
       <app-header [currentUrl]="currentUrl"></app-header>
-
       <ion-router-outlet class="example-content"></ion-router-outlet>
       <app-footer [currentUrl]="currentUrl"></app-footer>
     </ion-app>

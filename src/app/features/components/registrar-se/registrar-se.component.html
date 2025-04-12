@@ -1,29 +1,93 @@
       <ion-content class="ion-padding">
         <ion-item>
           <ion-input
+            class="input"
             label="Nome"
             labelPlacement="stacked"
             type="text"
-            placeholder="Gustavo Karnopp"
-            [(ngModel)]="name"
+            placeholder="Nome do Leader"
+            [(ngModel)]="this.registrarUserLeader.name"
+            fill="outline" 
           ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input class="password" type="password" labelPlacement="stacked" label="Senha"[(ngModel)]="password">
+          <ion-input
+            class="input"
+            label="Email"
+            labelPlacement="stacked"
+            type="email"
+            placeholder="leader@gmail.com"
+            [(ngModel)]="this.registrarUserLeader.email"
+            fill="outline" 
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input 
+            class="password input" 
+            type="password" 
+            labelPlacement="stacked" 
+            label="Senha"
+            [(ngModel)]="this.registrarUserLeader.password"
+            placeholder="*********"
+            fill="outline" 
+          >
             <ion-input-password-toggle slot="end"></ion-input-password-toggle>
           </ion-input>
         </ion-item>
         <ion-item>
           <ion-input
+            class="input"
             label="Nome do Evento"
             labelPlacement="stacked"
             type="text"
+            fill="outline" 
             placeholder="Panela de quinta-feira"
-            [(ngModel)]="eventName"
+            [(ngModel)]="this.registrarUserLeader.eventName"
           ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-select labelPlacement="stacked" label="Tipo do Evento" placeholder="GAME" value="GAME" [(ngModel)]="eventType">
+          <ion-textarea 
+            class="ion-textarea"
+            label="Descrição do Evento" 
+            labelPlacement="floating" 
+            fill="outline" 
+            placeholder="Sobre o Evento" 
+            [(ngModel)]="this.registrarUserLeader.description"
+          ></ion-textarea>
+
+        </ion-item>
+        <ion-item>
+          <ion-input
+            class="input"
+            label="Data de Início"
+            labelPlacement="stacked"
+            type="text"
+            placeholder="Panela de quinta-feira"
+            [(ngModel)]="this.registrarUserLeader.startDateTime"
+            fill="outline" 
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            class="input"
+            label="Data de Fim"
+            labelPlacement="stacked"
+            type="text"
+            placeholder="Panela de quinta-feira"
+            [(ngModel)]="this.registrarUserLeader.endDateTime"
+            fill="outline" 
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-select 
+            class="ion-select"
+            labelPlacement="stacked" 
+            label="Tipo do Evento" 
+            fill="outline"  
+            placeholder="GAME" 
+            value="GAME" 
+            [(ngModel)]="this.registrarUserLeader.type"
+          >
             <ion-select-option value="game">GAME</ion-select-option>
             <ion-select-option value="championship">CHAMPIONSHIP</ion-select-option>
           </ion-select>

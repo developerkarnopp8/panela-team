@@ -12,7 +12,11 @@ import {
   IonSelect,
   IonSelectOption,
   IonButton,
+  IonTextarea
 } from '@ionic/angular/standalone';
+import { IRegisterUserLeader } from './interface/IRegister';
+import { UsersEventoService } from 'src/app/shared/service/users.service';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-registrar-se',
@@ -27,34 +31,55 @@ import {
     IonSelect,
     IonSelectOption,
     IonButton,
+    IonTextarea
   ],
 })
 
 export class RegistrarSeComponent  implements OnInit {
+  private subs = new SubSink()
+
   constructor(
     private route: ActivatedRoute,
+    private usersEventoService: UsersEventoService,
     private routes: Router
   ) {}
 
   ngOnInit(): void {}
 
   @ViewChild(IonModal) modal!: IonModal;
-
-  name!: string;
-  email!: string;
-  password: string = 'admin';
-  eventName!: string;
-  eventType!: string;
+  registrarUserLeader: IRegisterUserLeader = {
+    name: '',
+    email: '',
+    password: '',
+    eventName: '',
+    type: '',
+    startDateTime: '',
+    endDateTime: '',  
+    images:  [],
+    description: '',
+    isOpen: false
+  };
 
   cancel() {
     this.modal.dismiss(null, 'cancel');
   }
 
   confirm() {
-    if (this.name && this.email && this.password && this.eventName && this.eventType) {
-      if (this.routes.url !== '/registrar') {
-        this.routes.navigate(['/registrar'], { replaceUrl: true });
-      }
+    if (
+      this.registrarUserLeader.name && 
+      this.registrarUserLeader.email && 
+      this.registrarUserLeader.password && 
+      this.registrarUserLeader.eventName && 
+      this.registrarUserLeader.type
+    ) {
+
+      this.subs.sink = this.usersEventoService.createUserLeaderEvento(this.registrarUserLeader).subscribe(
+        success => success,
+        error => error
+      );
+      // if (this.routes.url !== '/registrar') {
+      //   this.routes.navigate(['/registrar'], { replaceUrl: true });
+      // }
   } else {
     alert('Preencha email e senha!');
   }

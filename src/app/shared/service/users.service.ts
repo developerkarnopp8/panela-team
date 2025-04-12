@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
 
 import { environment } from '../../../environment/environments.users'
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class UsersEventoService {
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 
@@ -15,17 +16,17 @@ export class UsersService {
   private updateSubject = new Subject<void>();
   constructor(
     private http: HttpClient,
+    private routes: Router,
   ) {
-    const currentUserStorage  = localStorage.getItem('canvas');
+    const currentUserStorage  = sessionStorage.getItem('token');
     this.currentUserSubject = new BehaviorSubject<any>(currentUserStorage ? JSON.parse(currentUserStorage) : null);
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
   public getTokenStorage(){
-    const currentToken  = localStorage.getItem('canvas');
-    const token = currentToken ? JSON.parse(currentToken) : null
-    const tokken = token.accessToken
-    return tokken
+    const currentToken  = sessionStorage.getItem('token');
+    const token = currentToken ? JSON.parse(currentToken) : null;
+    return token
   }
 
   //  //? GET ALL TODOS OS USER PELO ID
@@ -54,17 +55,27 @@ export class UsersService {
   //   );
   // }
 
-  //  //? POST ALL USERS ID OF CLIENT
-  // setUsersId(body: any) : Observable<any>  {
-  //   const token = this.getTokenStorage()
-  //   const headers = { 'Authorization': `Bearer ${token}`}
-  //   return this.http.post<any>(`${environment.baseURL}${environment.basePath}`, body,{headers})
-  //   .pipe(
-  //     map(user => {
-  //       this.currentUserSubject.next(user);
-  //       return user;
-  //     }));
-  // }
+   //? POST ALL USERS ID OF CLIENT
+  createUserLeaderEvento(body: any) : Observable<any>  {
+    const token = this.getTokenStorage()
+    const headers = { 'Authorization': `Bearer ${token}`}
+    return this.http.post<any>(`${environment.baseURL}${environment.basePath}/leader-with-event`, body,{headers})
+    .pipe(
+      map(user => {
+        this.currentUserSubject.next(user);
+        if (this.routes.url !== '/login') {
+          this.routes.navigate(['/login'], { replaceUrl: true });
+        }
+
+        // localStorage.setItem('canvas', JSON.stringify(user.user));
+        // sessionStorage.setItem('token', JSON.stringify(user.access_token))
+        // this.currentUserSubject.next(user);
+        // if (this.routes.url !== '/eventos') {
+        //   this.routes.navigate(['/eventos'], { replaceUrl: true });
+        // }
+        return user;
+      }));
+  }
 
   // //? PUT PARA ATUALIZAR OS DADOS DOS USERS
   // updateDataUser(body: any, userId: number) : Observable<any>  {
