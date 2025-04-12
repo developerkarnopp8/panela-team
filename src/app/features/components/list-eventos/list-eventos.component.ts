@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import {
   IonContent,
@@ -7,10 +7,11 @@ import {
   IonLabel,
   IonList,
   IonNote,
+  IonToggle
 } from '@ionic/angular/standalone';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { addIcons } from 'ionicons';
-import { basketball, chevronForward, listCircle } from 'ionicons/icons';
+import { basketball, body, chevronForward, listCircle } from 'ionicons/icons';
 import { EventosService } from 'src/app/shared/service/eventos.service';
 import { CommonModule } from '@angular/common';
 
@@ -19,9 +20,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './list-eventos.component.html',
   styleUrls: ['./list-eventos.component.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [IonContent, IonIcon, IonItem, IonLabel, IonList, IonNote, CommonModule],
+  imports: [IonContent, IonIcon, IonItem, IonLabel, IonList, IonNote, IonToggle, CommonModule],
 })
-export class ListEventosComponent implements OnInit {
+export class ListEventosComponent implements OnInit, OnChanges {
 
   subscription!: Subscription;
   eventos: any[] = [];
@@ -38,7 +39,7 @@ export class ListEventosComponent implements OnInit {
   }
 
   async getEventos(){
-    this.eventosService.getEventos().subscribe((res) => {
+    this.subscription = this.eventosService.getEventos().subscribe((res) => {
       this.eventos = res;
       console.log(res);
     })
@@ -55,6 +56,24 @@ export class ListEventosComponent implements OnInit {
       );
     }
     console.log("Detail evento clicked")
+  }
+
+  onToggleChange(eventId: any) {
+    const data = {
+      ...eventId,
+      isOpen: !eventId.isOpen,
+    };
+    
+    delete data.id;
+    delete data.images;
+    
+    this.subscription = this.eventosService.updateDataEvento(data, eventId.id).subscribe((res) => {
+      this.getEventos();
+    })
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
   }
 
   ngOnDestroy() {

@@ -65,20 +65,23 @@ export class EventosService {
   //     }));
   // }
 
-  // //? PUT PARA ATUALIZAR OS DADOS DOS USERS
-  // updateDataUser(body: any, userId: number) : Observable<any>  {
-  //   const dados = body
-  //   Object.assign(dados, {user_id: userId})
-  //   const token = this.getTokenStorage()
-  //   const headers = { 'Authorization': `Bearer ${token}`}
-  //   return this.http.put<any>(`${environment.baseURL}${environment.basePath}`, dados,{headers})
-  //   .pipe(
-  //     map(user => {
-  //       console.log(user, 'dataUser')
-  //       this.currentUserSubject.next(user);
-  //       return user;
-  //     }));
-  // }
+  //? PUT PARA ATUALIZAR OS DADOS DOS USERS
+  updateDataEvento(data: any, eventoId: number) : Observable<any>  {
+    // const dados = body
+    // Object.assign(dados, {eventoId: eventoId})
+    console.log(data, 'dados')
+    console.log(eventoId, 'eventoId');
+    
+    const token = this.getTokenStorage()
+    const headers = { 'Authorization': `Bearer ${token}`}
+    return this.http.patch<any>(`${environment.baseURL}${environment.basePath}/${eventoId}`, data, {headers})
+    .pipe(
+      map(user => {
+        console.log(user, 'dataUser')
+        this.currentUserSubject.next(user);
+        return user;
+      }));
+  }
 
   // getUpdateObservable(): Observable<void> {
   //   return this.updateSubject.asObservable();
