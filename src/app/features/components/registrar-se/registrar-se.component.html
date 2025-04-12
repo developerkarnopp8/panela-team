@@ -57,26 +57,39 @@
 
         </ion-item>
         <ion-item>
-          <ion-input
-            class="input"
-            label="Data de Início"
-            labelPlacement="stacked"
-            type="text"
-            placeholder="Panela de quinta-feira"
-            [(ngModel)]="this.registrarUserLeader.startDateTime"
-            fill="outline" 
-          ></ion-input>
+          <ion-label>Início Evento</ion-label>
+          <ion-datetime-button datetime="iniciodatetime"></ion-datetime-button>
+
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime 
+                id="iniciodatetime" 
+                (ionChange)="updateStartDateTime($event)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>     
         </ion-item>
         <ion-item>
-          <ion-input
+          <ion-label>Fim Evento</ion-label>
+          <ion-datetime-button datetime="fimdatetime"></ion-datetime-button>
+
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime 
+                id="fimdatetime" 
+                (ionChange)="updateEndtDateTime($event)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+          <!-- <ion-input
             class="input"
-            label="Data de Fim"
+            label=" Fim"
             labelPlacement="stacked"
             type="text"
             placeholder="Panela de quinta-feira"
             [(ngModel)]="this.registrarUserLeader.endDateTime"
             fill="outline" 
-          ></ion-input>
+          ></ion-input> -->
         </ion-item>
         <ion-item>
           <ion-select 

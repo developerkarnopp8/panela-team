@@ -12,11 +12,13 @@ import {
   IonSelect,
   IonSelectOption,
   IonButton,
-  IonTextarea
+  IonTextarea,
+  IonDatetime, IonDatetimeButton
 } from '@ionic/angular/standalone';
 import { IRegisterUserLeader } from './interface/IRegister';
 import { UsersEventoService } from 'src/app/shared/service/users.service';
 import { SubSink } from 'subsink';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
   selector: 'app-registrar-se',
@@ -31,8 +33,12 @@ import { SubSink } from 'subsink';
     IonSelect,
     IonSelectOption,
     IonButton,
-    IonTextarea
+    IonTextarea,
+    IonDatetime, 
+    IonDatetimeButton, 
+    IonModal
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 
 export class RegistrarSeComponent  implements OnInit {
@@ -80,9 +86,21 @@ export class RegistrarSeComponent  implements OnInit {
       // if (this.routes.url !== '/registrar') {
       //   this.routes.navigate(['/registrar'], { replaceUrl: true });
       // }
-  } else {
-    alert('Preencha email e senha!');
+    } else {
+      alert('Preencha email e senha!');
+    }
   }
+
+  updateStartDateTime(event: any) {
+    console.log(event.detail.value);
+    
+    this.registrarUserLeader.startDateTime = event.detail.value;
+  }
+
+  updateEndtDateTime(event: any) {
+    console.log(event.detail.value);
+    
+    this.registrarUserLeader.endDateTime = event.detail.value;
   }
 
 
