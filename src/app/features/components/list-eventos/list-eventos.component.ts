@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import {
   IonContent,
@@ -22,7 +22,7 @@ import { CommonModule } from '@angular/common';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [IonContent, IonIcon, IonItem, IonLabel, IonList, IonNote, IonToggle, CommonModule],
 })
-export class ListEventosComponent implements OnInit, OnChanges {
+export class ListEventosComponent implements OnInit, OnChanges, OnDestroy {
 
   subscription!: Subscription;
   eventos: any[] = [];

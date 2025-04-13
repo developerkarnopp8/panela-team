@@ -57,10 +57,6 @@ export class LoginComponent  implements OnInit {
         success => success,
         error => error
       );
-        // if (this.routes.url !== '/eventos') {
-        //   this.routes.navigate(['/eventos']);
-        //   // this.routes.navigate(['/eventos'], { replaceUrl: true });
-        // }
     } else {
       alert('Preencha email e senha!');
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,6 +19,7 @@ import { IRegisterUserLeader } from './interface/IRegister';
 import { UsersEventoService } from 'src/app/shared/service/users.service';
 import { SubSink } from 'subsink';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-registrar-se',
@@ -41,9 +42,9 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 
-export class RegistrarSeComponent  implements OnInit {
+export class RegistrarSeComponent  implements OnInit, OnDestroy {
   private subs = new SubSink()
-
+  subscription!: Subscription;
   constructor(
     private route: ActivatedRoute,
     private usersEventoService: UsersEventoService,
@@ -79,7 +80,8 @@ export class RegistrarSeComponent  implements OnInit {
       this.registrarUserLeader.type
     ) {
 
-      this.subs.sink = this.usersEventoService.createUserLeaderEvento(this.registrarUserLeader).subscribe(
+      this.subscription = this.usersEventoService.createUserLeaderEvento(this.registrarUserLeader).subscribe(
+      // this.subs.sink = this.usersEventoService.createUserLeaderEvento(this.registrarUserLeader).subscribe(
         success => success,
         error => error
       );
@@ -92,16 +94,17 @@ export class RegistrarSeComponent  implements OnInit {
   }
 
   updateStartDateTime(event: any) {
-    console.log(event.detail.value);
-    
     this.registrarUserLeader.startDateTime = event.detail.value;
   }
 
   updateEndtDateTime(event: any) {
-    console.log(event.detail.value);
-    
     this.registrarUserLeader.endDateTime = event.detail.value;
   }
 
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 
 }

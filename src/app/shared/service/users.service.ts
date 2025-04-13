@@ -59,6 +59,7 @@ export class UsersEventoService {
   createUserLeaderEvento(body: any) : Observable<any>  {
     const token = this.getTokenStorage()
     const headers = { 'Authorization': `Bearer ${token}`}
+    console.log(body, 'body');
     return this.http.post<any>(`${environment.baseURL}${environment.basePath}/leader-with-event`, body,{headers})
     .pipe(
       map(user => {

@@ -59,37 +59,27 @@
         <ion-item>
           <ion-label>Início Evento</ion-label>
           <ion-datetime-button datetime="iniciodatetime"></ion-datetime-button>
-
           <ion-modal [keepContentsMounted]="true">
             <ng-template>
-              <ion-datetime 
-                id="iniciodatetime" 
-                (ionChange)="updateStartDateTime($event)"
-              ></ion-datetime>
+              <ion-datetime presentation="date-time" id="iniciodatetime" 
+              (ionChange)="updateStartDateTime($event)" [preferWheel]="true"></ion-datetime>
             </ng-template>
           </ion-modal>     
         </ion-item>
+
         <ion-item>
           <ion-label>Fim Evento</ion-label>
           <ion-datetime-button datetime="fimdatetime"></ion-datetime-button>
-
           <ion-modal [keepContentsMounted]="true">
             <ng-template>
-              <ion-datetime 
+              <ion-datetime presentation="date-time" id="fimdatetime" 
+              (ionChange)="updateEndtDateTime($event)" [preferWheel]="true"></ion-datetime>
+              <!-- <ion-datetime 
                 id="fimdatetime" 
                 (ionChange)="updateEndtDateTime($event)"
-              ></ion-datetime>
+              ></ion-datetime> -->
             </ng-template>
           </ion-modal>
-          <!-- <ion-input
-            class="input"
-            label=" Fim"
-            labelPlacement="stacked"
-            type="text"
-            placeholder="Panela de quinta-feira"
-            [(ngModel)]="this.registrarUserLeader.endDateTime"
-            fill="outline" 
-          ></ion-input> -->
         </ion-item>
         <ion-item>
           <ion-select 
@@ -101,8 +91,8 @@
             value="GAME" 
             [(ngModel)]="this.registrarUserLeader.type"
           >
-            <ion-select-option value="game">GAME</ion-select-option>
-            <ion-select-option value="championship">CHAMPIONSHIP</ion-select-option>
+            <ion-select-option value="GAME">GAME</ion-select-option>
+            <ion-select-option value="CHAMPIONSHIP">CHAMPIONSHIP</ion-select-option>
           </ion-select>
         </ion-item>
         <div class="input-container"> 
