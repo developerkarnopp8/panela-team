@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-  IonContent,
   IonList
 } from '@ionic/angular/standalone';
 @Component({
   selector: 'app-details-eventos',
   templateUrl: './details-eventos.component.html',
   styleUrls: ['./details-eventos.component.scss'],
-  imports: [ IonContent, IonList ]
+  imports: [ IonList ]
 })
 export class DetailsEventosComponent  implements OnInit {
 
