@@ -59,6 +59,8 @@ export class ListEventosComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onToggleChange(eventId: any) {
+    console.log(!eventId.isOpen);
+    
     const data = {
       ...eventId,
       isOpen: !eventId.isOpen,

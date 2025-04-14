@@ -1,29 +1,30 @@
 <ion-content fullscreen="true">
   <ion-list [inset]="true" *ngFor="let evento of eventos">
     
-    <ion-item [disabled]="!evento.isOpen" [button]="true" (click)="detailEvento(evento)">
+    <ion-item [button]="true" (click)="detailEvento(evento)">
+    <!-- <ion-item [disabled]="!evento.isOpen" [button]="true" (click)="detailEvento(evento)"> -->
       <ion-icon class="icon-bask" slot="start" name="basketball" size="large"></ion-icon>
       <ion-label>{{ evento.name }}</ion-label>
       <ion-note>Tipo: {{ evento.type }}</ion-note>
     </ion-item>
 
-    <ion-item [disabled]="!evento.isOpen" [button]="true" (click)="detailEvento(evento)">
+    <!-- <ion-item [disabled]="!evento.isOpen" [button]="true" (click)="detailEvento(evento)">
       <ion-label>
         Data: {{ evento.startDateTime | date:'dd/MM/yyyy' }}
       </ion-label>
       <ion-note slot="end">
         Hora: {{ evento.startDateTime | date:'HH:mm' }}
       </ion-note>
-    </ion-item>
+    </ion-item> -->
 
-    <ion-item>
+    <!-- <ion-item>
       <ion-toggle 
         [checked]="evento.isOpen" 
         [enableOnOffLabels]="true" 
         (ionChange)="onToggleChange(evento)">
         {{ evento.isOpen ? 'Aberto' : 'Fechado' }}
       </ion-toggle>
-    </ion-item>
+    </ion-item> -->
 
   </ion-list>
 </ion-content>

@@ -1,5 +1,33 @@
-  <ion-list [inset]="true">
-    {{evento.name}}
+<ion-content>
+  <ion-img
+    src="../../../../assets/img/detalhe.png"
+    alt="Detalhes do Jogo"
+  ></ion-img>
+
+  <ion-text color="--ion-color-primary" class="ion-text-center">
+    <h1>{{evento.name}}</h1>
+  </ion-text>
+
+  <ion-list>
+    <ion-item *ngFor="let instancia of evento.instances">
+      <ion-label>
+        <h2>{{ instancia.date | date:'dd/MM/yyyy' }}</h2>
+        <p>Horário: {{ instancia.startTime | date:'HH:mm' }} - {{ instancia.endTime | date:'HH:mm' }}</p>
+      </ion-label>
+      <ion-badge [color]="instancia.isOpen ? 'success' : 'medium'">
+        {{ instancia.isOpen ? 'Aberto' : 'Fechado' }}
+      </ion-badge>
+      <ion-button size="small" >Ver</ion-button>
+    </ion-item>
   </ion-list>
+  
+
+  <!-- <ion-list [inset]="true">
+
+
+    {{evento.name}}
+  </ion-list> -->
+</ion-content>
+
 
 

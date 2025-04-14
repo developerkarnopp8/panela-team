@@ -43,8 +43,8 @@ export class LoginComponent  implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
 
   login: ILogin = {
-    email: 'ml@panela.dev',
-    password: '123456'
+    email: '',
+    password: ''
   }
 
   cancel() {
