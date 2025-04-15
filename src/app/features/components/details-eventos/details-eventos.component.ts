@@ -55,9 +55,6 @@ export class DetailsEventosComponent  implements OnInit {
         this.evento = JSON.parse(eventoFromSession);
       }
     }
-
-    console.log('Evento:', this.evento);
-    
   }
 
   isPast(endTime: string | Date): boolean {

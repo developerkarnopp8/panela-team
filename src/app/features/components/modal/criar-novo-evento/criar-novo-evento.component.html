@@ -11,65 +11,63 @@
           </ion-toolbar>
         </ion-header>
         <ion-content class="ion-padding">
-          <ion-content class="ion-padding">
-            <ion-item>
-              <ion-input
-                class="input"
-                label="Nome do Evento"
-                labelPlacement="stacked"
-                type="text"
-                fill="outline" 
-                placeholder="Panela de quinta-feira"
-                [(ngModel)]="this.registrarNewEvent.eventName"
-              ></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-textarea 
-                class="ion-textarea"
-                label="Descrição do Evento" 
-                labelPlacement="floating" 
-                fill="outline" 
-                placeholder="Sobre o Evento" 
-                [(ngModel)]="this.registrarNewEvent.description"
-              ></ion-textarea>
-    
-            </ion-item>
-            <ion-item>
-              <ion-label>Início Evento</ion-label>
-              <ion-datetime-button datetime="iniciodatetime"></ion-datetime-button>
-              <ion-modal [keepContentsMounted]="true">
-                <ng-template>
-                  <ion-datetime presentation="date-time" id="iniciodatetime" 
-                  (ionChange)="updateStartDateTime($event)" [preferWheel]="true"></ion-datetime>
-                </ng-template>
-              </ion-modal>     
-            </ion-item>
-    
-            <ion-item>
-              <ion-label>Fim Evento</ion-label>
-              <ion-datetime-button datetime="fimdatetime"></ion-datetime-button>
-              <ion-modal [keepContentsMounted]="true">
-                <ng-template>
-                  <ion-datetime presentation="date-time" id="fimdatetime" 
-                  (ionChange)="updateEndtDateTime($event)" [preferWheel]="true"></ion-datetime>
-                </ng-template>
-              </ion-modal>
-            </ion-item>
-            <ion-item>
-              <ion-select 
-                class="ion-select"
-                labelPlacement="stacked" 
-                label="Tipo do Evento" 
-                fill="outline"  
-                placeholder="GAME" 
-                value="GAME" 
-                [(ngModel)]="this.registrarNewEvent.type"
-              >
-                <ion-select-option value="GAME">GAME</ion-select-option>
-                <ion-select-option value="CHAMPIONSHIP">CHAMPIONSHIP</ion-select-option>
-              </ion-select>
-            </ion-item>
-          </ion-content>
+          <ion-item>
+            <ion-input
+              class="input"
+              label="Nome do Evento"
+              labelPlacement="stacked"
+              type="text"
+              fill="outline" 
+              placeholder="Panela de quinta-feira"
+              [(ngModel)]="this.registrarNewEvent.eventName"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-textarea 
+              class="ion-textarea"
+              label="Descrição do Evento" 
+              labelPlacement="floating" 
+              fill="outline" 
+              placeholder="Sobre o Evento" 
+              [(ngModel)]="this.registrarNewEvent.description"
+            ></ion-textarea>
+  
+          </ion-item>
+          <ion-item>
+            <ion-label>Início Evento</ion-label>
+            <ion-datetime-button datetime="iniciodatetime"></ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime presentation="date-time" id="iniciodatetime" 
+                (ionChange)="updateStartDateTime($event)" [preferWheel]="true"></ion-datetime>
+              </ng-template>
+            </ion-modal>     
+          </ion-item>
+  
+          <ion-item>
+            <ion-label>Fim Evento</ion-label>
+            <ion-datetime-button datetime="fimdatetime"></ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime presentation="date-time" id="fimdatetime" 
+                (ionChange)="updateEndtDateTime($event)" [preferWheel]="true"></ion-datetime>
+              </ng-template>
+            </ion-modal>
+          </ion-item>
+          <ion-item>
+            <ion-select 
+              class="ion-select"
+              labelPlacement="stacked" 
+              label="Tipo do Evento" 
+              fill="outline"  
+              placeholder="GAME" 
+              value="GAME" 
+              [(ngModel)]="this.registrarNewEvent.type"
+            >
+              <ion-select-option value="GAME">GAME</ion-select-option>
+              <ion-select-option value="CHAMPIONSHIP">CHAMPIONSHIP</ion-select-option>
+            </ion-select>
+          </ion-item>
         </ion-content>
       </ng-template>
     </ion-modal>

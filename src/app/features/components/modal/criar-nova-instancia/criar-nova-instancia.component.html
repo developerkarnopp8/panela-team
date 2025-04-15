@@ -1,17 +1,57 @@
 <div class="ion-page">
   <ion-content class="ion-padding">
-    <ion-modal #modal id="open-modal-instancia" [canDismiss]="canDismiss" [presentingElement]="presentingElement">
+    <ion-modal #modal id="open-modal-instancia" [presentingElement]="presentingElement">
       <ng-template>
         <ion-header>
           <ion-toolbar>
             <ion-title>Novo Horario de Game</ion-title>
             <ion-buttons slot="end">
-              <ion-button (click)="modal.dismiss()">Avançar</ion-button>
+              <ion-button (click)="cadastrarInstancia()">Avançar</ion-button>
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
         <ion-content class="ion-padding">
-          <p>You will be prompted when closing this modal.</p>
+          <ion-item>
+            <ion-label>Data Do Evento</ion-label>
+            <ion-datetime-button datetime="date"></ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime presentation="date" id="date" 
+                (ionChange)="updateDate($event)" [preferWheel]="true"></ion-datetime>
+              </ng-template>
+            </ion-modal>     
+          </ion-item>
+          
+          <ion-item>
+            <ion-label>Início Game</ion-label>
+            <ion-datetime-button datetime="iniciotime"></ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime 
+                presentation="time" 
+                id="iniciotime" 
+                (ionChange)="updateStartTime($event)" 
+                [preferWheel]="true"
+                ></ion-datetime>
+              </ng-template>
+            </ion-modal>     
+          </ion-item>
+          
+          <ion-item>
+            <ion-label>Fim Game</ion-label>
+            <ion-datetime-button datetime="fimtime"></ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime 
+                  presentation="time" 
+                  id="fimtime" 
+                  (ionChange)="updateEndTime($event)" 
+                  [preferWheel]="true"
+                >
+              </ion-datetime>
+              </ng-template>
+            </ion-modal>
+          </ion-item>
         </ion-content>
       </ng-template>
     </ion-modal>

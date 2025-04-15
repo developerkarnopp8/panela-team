@@ -32,6 +32,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private router: Router,
     private authService : AuthService
   ) {
+    (window as any).eventosStore = this; // Expondo o store globalmente para depuração
     this.router.events.subscribe(() => {
       this.currentUrl = this.router.url; 
       this.exibirMenu = !['/login', '/iniciar', '/registrar'].includes(this.currentUrl);  

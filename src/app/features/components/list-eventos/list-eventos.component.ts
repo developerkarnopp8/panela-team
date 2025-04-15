@@ -14,7 +14,6 @@ import { addIcons } from 'ionicons';
 import { basketball, body, chevronForward, listCircle } from 'ionicons/icons';
 import { EventosService } from 'src/app/shared/service/eventos.service';
 import { CommonModule } from '@angular/common';
-import { EventosStoreService } from 'src/app/shared/stores/eventos.store.service';
 
 @Component({
   selector: 'app-list-eventos',
@@ -31,7 +30,6 @@ export class ListEventosComponent implements OnInit, OnChanges, OnDestroy {
   constructor(
     private route: Router,
     private eventosService: EventosService,
-    private eventosStore: EventosStoreService,
   ) { 
     addIcons({ chevronForward, basketball });
   }
@@ -42,13 +40,8 @@ export class ListEventosComponent implements OnInit, OnChanges, OnDestroy {
 
   async getEventos(){
     this.subscription = this.eventosService.getEventos().subscribe((res) => {
-      this.eventosStore.setEventos(res); // Atualiza o estado do store com os eventos recebidos
-      // this.eventos = res;
+      this.eventos = res;
     })
-
-    this.eventosStore.eventos$.subscribe((eventos) => {
-      this.eventos = eventos; // Atualiza a lista de eventos com os dados do store
-    });
   }
 
   detailEvento(evento: any) {

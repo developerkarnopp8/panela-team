@@ -27,6 +27,17 @@ export class EventosInstanciaService {
     return token
   }
 
+  createdNewInstanciaGame(body: any, eventId: any) : Observable<any>  {
+    const token = this.getTokenStorage()
+    const headers = { 'Authorization': `Bearer ${token}`}
+    return this.http.post<any>(`${environment.baseURL}${environment.patchEvent}/${eventId}/instances`, body, { headers })
+    .pipe(
+      map(user => {
+        this.currentUserSubject.next(user);
+        return user;
+      }));
+  }
+
   //? PUT PARA ATUALIZAR OS DADOS DOS USERS
   updateDataEventoInstanciaAbertoOrClose(eventoId: number) : Observable<any>  {    
     const token = this.getTokenStorage()
