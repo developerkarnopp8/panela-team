@@ -41,7 +41,6 @@ export class ListEventosComponent implements OnInit, OnChanges, OnDestroy {
   async getEventos(){
     this.subscription = this.eventosService.getEventos().subscribe((res) => {
       this.eventos = res;
-      console.log(res);
     })
   }
 
@@ -55,23 +54,6 @@ export class ListEventosComponent implements OnInit, OnChanges, OnDestroy {
         }
       );
     }
-    console.log("Detail evento clicked")
-  }
-
-  onToggleChange(eventId: any) {
-    console.log(!eventId.isOpen);
-    
-    const data = {
-      ...eventId,
-      isOpen: !eventId.isOpen,
-    };
-    
-    delete data.id;
-    delete data.images;
-    
-    this.subscription = this.eventosService.updateDataEvento(data, eventId.id).subscribe((res) => {
-      this.getEventos();
-    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {

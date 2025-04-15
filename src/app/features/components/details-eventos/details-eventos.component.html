@@ -14,19 +14,26 @@
         <h2>{{ instancia.date | date:'dd/MM/yyyy' }}</h2>
         <p>Horário: {{ instancia.startTime | date:'HH:mm' }} - {{ instancia.endTime | date:'HH:mm' }}</p>
       </ion-label>
-      <ion-badge [color]="instancia.isOpen ? 'success' : 'medium'">
-        {{ instancia.isOpen ? 'Aberto' : 'Fechado' }}
-      </ion-badge>
-      <ion-button size="small" >Ver</ion-button>
+
+      <ion-item>
+        <ion-toggle 
+          [checked]="instancia.isOpen" 
+          [enableOnOffLabels]="true" 
+          (ionChange)="onToggleChange(instancia.id)">
+          <!-- <ion-label  slot="start"> 
+            <ion-text [color]="instancia.isOpen ? 'success' : 'medium'"> -->
+              <p [ngStyle]="{'color': instancia.isOpen ? 'green' : 'gray'}">
+                {{ instancia.isOpen ? 'Aberto' : 'Fechado' }}
+              </p>
+            <!-- </ion-text>
+          </ion-label> -->
+        </ion-toggle>
+      </ion-item>
+
+
+      <ion-button [disabled]="!instancia.isOpen" size="small" >Ver mais</ion-button>
     </ion-item>
   </ion-list>
-  
-
-  <!-- <ion-list [inset]="true">
-
-
-    {{evento.name}}
-  </ion-list> -->
 </ion-content>
 
 

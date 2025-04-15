@@ -54,22 +54,26 @@ export class HeaderComponent  implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-  
+    this.validaRota();  
   }
 
   ngOnChanges() {
-
+   this.validaRota();  
+  }
+  
+  validaRota() {
     this.verificaRota = this.currentUrl.includes('/iniciar') || 
                         this.currentUrl.includes('/eventos');
-
+  
     this.verificaRotaMenu = this.currentUrl.includes('/iniciar') || 
                             this.currentUrl.includes('/registrar') || 
-                            this.currentUrl.includes('/login');
-                            
+                            this.currentUrl.includes('/login') ||
+                            this.currentUrl.includes('/details');
+
   }
 
-  back(){
 
+  back(){
     console.log(window.history.length > 1);
     
     if (window.history.length > 1) {

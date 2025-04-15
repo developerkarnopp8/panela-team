@@ -13,6 +13,9 @@ import {
   IonBadge,
   IonButton
 } from '@ionic/angular/standalone';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { EventosInstanciaService } from 'src/app/shared/service/eventos.instancia.service';
+import { EventosService } from 'src/app/shared/service/eventos.service';
 @Component({
   selector: 'app-details-eventos',
   templateUrl: './details-eventos.component.html',
@@ -35,8 +38,11 @@ import {
 export class DetailsEventosComponent  implements OnInit {
 
   evento: any;
-
-  constructor(private router: Router) {}
+  subscription!: Subscription;
+  constructor(
+    private router: Router,
+    private eventosInstanciaService: EventosInstanciaService,
+  ) {}
 
   ngOnInit() {
     const navigation = this.router.getCurrentNavigation();
@@ -51,5 +57,18 @@ export class DetailsEventosComponent  implements OnInit {
     }
 
     console.log('Evento:', this.evento);
+  }
+
+
+  onToggleChange(eventInstancia: any) {
+    this.subscription = this.eventosInstanciaService
+    .updateDataEventoInstanciaAbertoOrClose(eventInstancia)
+    .subscribe((res) => {
+      // Atualiza o item da lista local
+      const instancia = this.evento.instances.find((i: any) => i.id === eventInstancia);
+      if (instancia) {
+        instancia.isOpen = res.isOpen; // <-- atualiza o toggle e badge
+      }
+    })
   }
 }
