@@ -20,12 +20,12 @@
 
       <ion-item>
         <ion-toggle 
-          [checked]="instancia.isOpen" 
+          [checked]=" !isPast(instancia.endTime) && instancia.isOpen" 
           [enableOnOffLabels]="true" 
           [disabled]="isPast(instancia.endTime)"
           (ionChange)="onToggleChange(instancia.id)">
-            <p [ngStyle]="{'color': instancia.isOpen ? 'green' : 'gray'}">
-              {{ instancia.isOpen ? 'Aberto' : 'Fechado' }}
+            <p [ngStyle]="{'color': !isPast(instancia.endTime) && instancia.isOpen ? 'green' : 'gray'}">
+              {{ !isPast(instancia.endTime) && instancia.isOpen ? 'Aberto' : 'Fechado' }}
             </p>
         </ion-toggle>
       </ion-item>

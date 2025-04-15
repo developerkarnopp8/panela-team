@@ -1,0 +1,19 @@
+<div class="ion-page">
+  <ion-content class="ion-padding">
+    <ion-modal #modal id="open-modal-novo-game" [canDismiss]="canDismiss" [presentingElement]="presentingElement">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Criar Novo Game</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="modal.dismiss()">Avançar</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <p>You will be prompted when closing this modal.</p>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </ion-content>
+</div>

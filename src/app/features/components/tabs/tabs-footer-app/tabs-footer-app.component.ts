@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   IonIcon,
   IonTabBar,
@@ -7,6 +8,7 @@ import {
 
 import { addIcons } from 'ionicons';
 import { addCircleSharp, basketball, listCircleSharp } from 'ionicons/icons';
+import { AuthService } from 'src/app/shared/service/auth.service';
 @Component({
   selector: 'app-tabs-footer-app',
   templateUrl: './tabs-footer-app.component.html',
@@ -18,11 +20,36 @@ import { addCircleSharp, basketball, listCircleSharp } from 'ionicons/icons';
   ],
 })
 export class TabsFooterAppComponent  implements OnInit {
-
-  constructor() {
+  currentUrl: string = '';
+  exibirModalCorreto: boolean = true;
+  constructor(
+    private router: Router,
+    private authService : AuthService
+  ) {
+    this.router.events.subscribe(() => {
+      this.currentUrl = this.router.url; 
+    });
     addIcons({ basketball, addCircleSharp, listCircleSharp });
   }
 
   ngOnInit() {}
 
+  openModalNovo() {
+    // this.router.events.subscribe(() => {
+    //   this.currentUrl = this.router.url; 
+    // });
+    console.log(this.currentUrl);
+    
+    const modalEvent = document.getElementById('open-modal-novo-game') as HTMLIonModalElement | null;
+    const modalEventInstancia = document.getElementById('open-modal-instancia') as HTMLIonModalElement | null;
+
+    if (modalEvent && this.currentUrl === '/eventos') {
+      console.log(modalEvent);
+      modalEvent.present(); // Exibe o modal
+    }
+
+    if(modalEventInstancia && this.currentUrl === '/details'){
+      modalEventInstancia.present(); // Exibe o modal
+    }
+}
 }
