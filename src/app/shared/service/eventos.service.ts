@@ -27,7 +27,7 @@ export class EventosService {
     return token
   }
 
-   //? GET ALL TODOS OS USER PELO ID
+   //? GET ALL TODOS OS EVENTOS
   getEventos(): Observable<any> {
     const token = this.getTokenStorage();
     const headers = { 'Authorization': `Bearer ${token}` };
@@ -53,25 +53,20 @@ export class EventosService {
   //   );
   // }
 
-  //  //? POST ALL USERS ID OF CLIENT
-  // setUsersId(body: any) : Observable<any>  {
-  //   const token = this.getTokenStorage()
-  //   const headers = { 'Authorization': `Bearer ${token}`}
-  //   return this.http.post<any>(`${environment.baseURL}${environment.basePath}`, body,{headers})
-  //   .pipe(
-  //     map(user => {
-  //       this.currentUserSubject.next(user);
-  //       return user;
-  //     }));
-  // }
+   //? POST CREATE NEW EVENT
+  createdNewEventGame(body: any) : Observable<any>  {
+    const token = this.getTokenStorage()
+    const headers = { 'Authorization': `Bearer ${token}`}
+    return this.http.post<any>(`${environment.baseURL}${environment.basePath}`, body,{headers})
+    .pipe(
+      map(user => {
+        this.currentUserSubject.next(user);
+        return user;
+      }));
+  }
 
   //? PUT PARA ATUALIZAR OS DADOS DOS USERS
-  updateDataEvento(data: any, eventoId: number) : Observable<any>  {
-    // const dados = body
-    // Object.assign(dados, {eventoId: eventoId})
-    console.log(data, 'dados')
-    console.log(eventoId, 'eventoId');
-    
+  updateDataEvento(data: any, eventoId: number) : Observable<any>  {   
     const token = this.getTokenStorage()
     const headers = { 'Authorization': `Bearer ${token}`}
     return this.http.patch<any>(`${environment.baseURL}${environment.basePath}/${eventoId}`, data, {headers})

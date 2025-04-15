@@ -13,7 +13,8 @@ import {
   IonSelectOption,
   IonButton,
   IonTextarea,
-  IonDatetime, IonDatetimeButton
+  IonDatetime, 
+  IonDatetimeButton
 } from '@ionic/angular/standalone';
 import { IRegisterUserLeader } from './interface/IRegister';
 import { UsersEventoService } from 'src/app/shared/service/users.service';
@@ -43,7 +44,6 @@ import { Subscription } from 'rxjs/internal/Subscription';
 })
 
 export class RegistrarSeComponent  implements OnInit, OnDestroy {
-  private subs = new SubSink()
   subscription!: Subscription;
   constructor(
     private route: ActivatedRoute,
@@ -79,15 +79,10 @@ export class RegistrarSeComponent  implements OnInit, OnDestroy {
       this.registrarUserLeader.eventName && 
       this.registrarUserLeader.type
     ) {
-
       this.subscription = this.usersEventoService.createUserLeaderEvento(this.registrarUserLeader).subscribe(
-      // this.subs.sink = this.usersEventoService.createUserLeaderEvento(this.registrarUserLeader).subscribe(
         success => success,
         error => error
       );
-      // if (this.routes.url !== '/registrar') {
-      //   this.routes.navigate(['/registrar'], { replaceUrl: true });
-      // }
     } else {
       alert('Preencha email e senha!');
     }
