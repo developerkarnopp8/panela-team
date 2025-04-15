@@ -57,9 +57,13 @@ export class DetailsEventosComponent  implements OnInit {
     }
 
     console.log('Evento:', this.evento);
+    
   }
 
-
+  isPast(endTime: string | Date): boolean {
+    return new Date(endTime) < new Date();
+  }
+  
   onToggleChange(eventInstancia: any) {
     this.subscription = this.eventosInstanciaService
     .updateDataEventoInstanciaAbertoOrClose(eventInstancia)
