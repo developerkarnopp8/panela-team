@@ -74,7 +74,7 @@ export class CriarNovaInstanciaComponent  implements OnInit {
     }
     this.subscription = this.eventosInstanciaService.createdNewInstanciaGame(this.registrarNewInstancia, this.event.id).subscribe(
       (res) => {
-        this.eventosInstanciaStoreService.setEventosInstancia(res); // Adiciona o evento criado ao store
+        this.eventosInstanciaStoreService.adicionarEventoInstancia(res); // Adiciona o evento criado ao store
         this.modal.dismiss(this.registrarNewInstancia);
       },
       (error) => {

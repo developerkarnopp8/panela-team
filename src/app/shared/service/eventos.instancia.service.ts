@@ -27,6 +27,19 @@ export class EventosInstanciaService {
     return token
   }
 
+  //? GET ALL TODOS AS INSTANCIAS PELO ID DO EVENTO
+  getInstanciaEventId(id: number): Observable<any> {
+    const token = this.getTokenStorage();
+    const headers = { 'Authorization': `Bearer ${token}` };
+    return this.http.get<any>(`${environment.baseURL}${environment.patchEvent}/${id}/instances`, { headers })
+    .pipe(
+      map(response => {
+        this.currentUserSubject.next(response);
+        return response;
+      })
+    );
+  }
+
   createdNewInstanciaGame(body: any, eventId: any) : Observable<any>  {
     const token = this.getTokenStorage()
     const headers = { 'Authorization': `Bearer ${token}`}

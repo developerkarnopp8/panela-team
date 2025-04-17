@@ -14,6 +14,7 @@ import {
 } from '@ionic/angular/standalone';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { EventosInstanciaService } from 'src/app/shared/service/eventos.instancia.service';
+import { EventosInstanciaStoreService } from 'src/app/shared/stores/eventos.instancias.store.service';
 @Component({
   selector: 'app-details-eventos',
   templateUrl: './details-eventos.component.html',
@@ -35,23 +36,36 @@ import { EventosInstanciaService } from 'src/app/shared/service/eventos.instanci
 export class DetailsEventosComponent  implements OnInit, OnChanges {
 
   evento: any;
+  eventoId: any;
   subscription!: Subscription;
 
   constructor(
     private router: Router,
     private eventosInstanciaService: EventosInstanciaService,
+    private eventosInstanciaStoreService: EventosInstanciaStoreService,
   ) {}
   
   ngOnInit() {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras?.state && navigation.extras.state['evento']) {
-      this.evento = navigation.extras.state['evento'];
+      this.eventoId = navigation.extras.state['evento'].id;
     } else {
       const eventoFromSession = sessionStorage.getItem('evento');
       if (eventoFromSession) {
-        this.evento = JSON.parse(eventoFromSession);
+        this.eventoId = JSON.parse(eventoFromSession).id;
       }
     }
+
+    console.log(this.eventoId);
+
+    this.subscription = this.eventosInstanciaService.getInstanciaEventId(this.eventoId)
+    .subscribe((res) => {
+      this.eventosInstanciaStoreService.setEventosInstancia(res);
+    });
+
+    this.subscription = this.eventosInstanciaStoreService.instancias$.subscribe(evento => {
+      this.evento = evento;
+    });
   }
 
   isPast(endTime: string | Date): boolean {
