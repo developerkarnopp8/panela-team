@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
-  ActionSheetController,
   IonButton,
   IonButtons,
   IonContent,
@@ -9,18 +8,11 @@ import {
   IonModal,
   IonTitle,
   IonToolbar,
-  IonInput,
   IonItem,
-  IonSelect,
-  IonSelectOption,
-  IonTextarea,
   IonDatetime, 
   IonDatetimeButton,
   IonLabel
 } from '@ionic/angular/standalone';
-import { EventosService } from 'src/app/shared/service/eventos.service';
-import { EventosStoreService } from 'src/app/shared/stores/eventos.store.service';
-import { IRegisterNewEvent } from '../criar-novo-evento/interface/IRegisterNewEvent';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { IRegisterNewInstancia } from './interface/IRegisterNewInstancia';
 import { EventosInstanciaService } from 'src/app/shared/service/eventos.instancia.service';
@@ -40,11 +32,7 @@ import { Router } from '@angular/router';
     IonTitle, 
     IonToolbar,
     FormsModule,
-    IonInput,
     IonItem,
-    IonSelect,
-    IonSelectOption,
-    IonTextarea,
     IonDatetime, 
     IonDatetimeButton, 
     IonLabel
@@ -56,36 +44,34 @@ export class CriarNovaInstanciaComponent  implements OnInit {
   event!: any;
   @ViewChild(IonModal) modal!: IonModal;
   constructor(
-    private actionSheetCtrl: ActionSheetController,
+
     private eventosInstanciaService: EventosInstanciaService,
     private eventosInstanciaStoreService: EventosInstanciaStoreService,  
-    private eventosStore: EventosStoreService,
     private router: Router,
+
   ) {}
-    registrarNewInstancia: IRegisterNewInstancia = {
-      date: '',
-      startTime: '',
-      endTime: '',
-      isOpen: false
-    };
+
+  registrarNewInstancia: IRegisterNewInstancia = {
+    date: '',
+    startTime: '',
+    endTime: '',
+    isOpen: false
+  };
+
   ngOnInit() {
-    const navigation = this.router.getCurrentNavigation();
-    if (navigation?.extras?.state && navigation.extras.state['evento']) {
-      this.event = navigation.extras.state['evento'];
-    } else {
-      // fallback se entrou direto na rota
-      const eventoFromSession = sessionStorage.getItem('evento');
+    const eventoFromSession = sessionStorage.getItem('evento');
       if (eventoFromSession) {
         this.event = JSON.parse(eventoFromSession);
       }
-    }
-    this.presentingElement = document.querySelector('.ion-page');
+    console.log('CriarNovaInstanciaComponent ngOnInit', this.event);
+    
   }
   
   cadastrarInstancia(){
-    
-    console.log(this.event);
-    
+    const eventoFromSession = sessionStorage.getItem('evento');
+    if (eventoFromSession) {
+      this.event = JSON.parse(eventoFromSession);
+    }
     this.subscription = this.eventosInstanciaService.createdNewInstanciaGame(this.registrarNewInstancia, this.event.id).subscribe(
       (res) => {
         this.eventosInstanciaStoreService.setEventosInstancia(res); // Adiciona o evento criado ao store
@@ -94,8 +80,8 @@ export class CriarNovaInstanciaComponent  implements OnInit {
       (error) => {
         console.error(error);
       }
-
     );
+
   }
 
   updateDate(event: any) {
@@ -111,8 +97,10 @@ export class CriarNovaInstanciaComponent  implements OnInit {
   }
 
   ngOnDestroy() {
+
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+    
   }
 }

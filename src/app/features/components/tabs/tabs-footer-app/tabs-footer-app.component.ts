@@ -35,11 +35,6 @@ export class TabsFooterAppComponent  implements OnInit {
   ngOnInit() {}
 
   openModalNovo() {
-    // this.router.events.subscribe(() => {
-    //   this.currentUrl = this.router.url; 
-    // });
-    console.log(this.currentUrl);
-    
     const modalEvent = document.getElementById('open-modal-novo-game') as HTMLIonModalElement | null;
     const modalEventInstancia = document.getElementById('open-modal-instancia') as HTMLIonModalElement | null;
 

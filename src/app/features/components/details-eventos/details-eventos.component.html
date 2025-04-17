@@ -17,10 +17,9 @@
         <ion-note *ngIf="!isPast(instancia.endTime)" color="green">
           Game aberto
         </ion-note>
-        <h2>{{ instancia.date | date:'dd/MM/yyyy' }}</h2>
+        <h2>{{ instancia.endTime | date:'dd/MM/yyyy' }}</h2>
         <p>Horário: {{ instancia.startTime | date:'HH:mm' }} - {{ instancia.endTime | date:'HH:mm' }}</p>
       </ion-label>
-
       <ion-item>
         <ion-toggle 
           [checked]=" !isPast(instancia.endTime) && instancia.isOpen" 
@@ -32,7 +31,6 @@
             </p>
         </ion-toggle>
       </ion-item>
-
       <ion-button [disabled]="isPast(instancia.endTime)" size="small" >Ver mais</ion-button>
     </ion-item>
   </ion-list>

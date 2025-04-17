@@ -1,6 +1,5 @@
 <ion-content fullscreen="true">
   <ion-list [inset]="true" *ngFor="let evento of eventos">
-    
     <ion-item [button]="true" (click)="detailEvento(evento)">
       <ion-icon class="icon-bask" slot="start" name="basketball" size="large"></ion-icon>
       <ion-label>{{ evento.name }}</ion-label>

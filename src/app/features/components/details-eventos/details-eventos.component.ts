@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   IonList,
@@ -10,12 +10,10 @@ import {
   IonContent,
   IonText,
   IonItem,
-  IonBadge,
   IonButton
 } from '@ionic/angular/standalone';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { EventosInstanciaService } from 'src/app/shared/service/eventos.instancia.service';
-import { EventosService } from 'src/app/shared/service/eventos.service';
 @Component({
   selector: 'app-details-eventos',
   templateUrl: './details-eventos.component.html',
@@ -30,26 +28,25 @@ import { EventosService } from 'src/app/shared/service/eventos.service';
     IonText, 
     CommonModule, 
     IonItem, 
-    IonBadge,
     IonButton
   ],
   standalone: true,
 })
-export class DetailsEventosComponent  implements OnInit {
+export class DetailsEventosComponent  implements OnInit, OnChanges {
 
   evento: any;
   subscription!: Subscription;
+
   constructor(
     private router: Router,
     private eventosInstanciaService: EventosInstanciaService,
   ) {}
-
+  
   ngOnInit() {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras?.state && navigation.extras.state['evento']) {
       this.evento = navigation.extras.state['evento'];
     } else {
-      // fallback se entrou direto na rota
       const eventoFromSession = sessionStorage.getItem('evento');
       if (eventoFromSession) {
         this.evento = JSON.parse(eventoFromSession);
@@ -61,14 +58,19 @@ export class DetailsEventosComponent  implements OnInit {
     return new Date(endTime) < new Date();
   }
   
+  ngOnChanges() {
+    const eventoFromSession = sessionStorage.getItem('evento');
+    if (eventoFromSession) {
+      this.evento = JSON.parse(eventoFromSession);
+    }
+  }
   onToggleChange(eventInstancia: any) {
     this.subscription = this.eventosInstanciaService
     .updateDataEventoInstanciaAbertoOrClose(eventInstancia)
     .subscribe((res) => {
-      // Atualiza o item da lista local
       const instancia = this.evento.instances.find((i: any) => i.id === eventInstancia);
       if (instancia) {
-        instancia.isOpen = res.isOpen; // <-- atualiza o toggle e badge
+        instancia.isOpen = res.isOpen;
       }
     })
   }
