@@ -5,6 +5,8 @@ import { LoginComponent } from './features/components/login/login.component';
 import { RegistrarSeComponent } from './features/components/registrar-se/registrar-se.component';
 import { authGuard } from './core/guards/auth/auth.guard';
 import { DetailsEventosComponent } from './features/components/details-eventos/details-eventos.component';
+import { JogadoresPageViewComponent } from './features/jogadores-page-view/jogadores-page-view.component';
+import { CadastroPlayerComponent } from './features/jogadores-page-view/cadastro-player/cadastro-player.component';
 
 export const routes: Routes = [
   {
@@ -43,5 +45,18 @@ export const routes: Routes = [
     canActivate: [authGuard],
     component: DetailsEventosComponent,
     title: 'Detalhes Evento',
+  },
+  {
+    path: 'players',
+    pathMatch: 'full',
+    canActivate: [authGuard],
+    component: JogadoresPageViewComponent,
+    title: 'Todos os Jogadores',
+  },
+  {
+    path: 'register-player',
+    pathMatch: 'full',
+    component: CadastroPlayerComponent,
+    title: 'Cadastro de Jogadores',
   }
 ];

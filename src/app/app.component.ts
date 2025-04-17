@@ -27,6 +27,7 @@ import { NavBarComponent } from "./features/components/nav-bar/nav-bar.component
 export class AppComponent implements OnInit, OnDestroy {
   currentUrl: string = '';
   exibirMenu: boolean = true;
+  isNavigating: any;
 
   constructor(
     private router: Router,

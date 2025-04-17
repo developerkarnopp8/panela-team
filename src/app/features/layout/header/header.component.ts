@@ -68,7 +68,8 @@ export class HeaderComponent  implements OnInit, OnChanges {
     this.verificaRotaMenu = this.currentUrl.includes('/iniciar') || 
                             this.currentUrl.includes('/registrar') || 
                             this.currentUrl.includes('/login') ||
-                            this.currentUrl.includes('/details');
+                            this.currentUrl.includes('/details') ||
+                            this.currentUrl.includes('/players');
 
   }
 

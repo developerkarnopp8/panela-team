@@ -5,7 +5,8 @@ import {
   IonTabBar,
   IonTabButton,
 } from '@ionic/angular/standalone';
-
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { addCircleSharp, basketball, listCircleSharp } from 'ionicons/icons';
 import { AuthService } from 'src/app/shared/service/auth.service';
@@ -17,6 +18,8 @@ import { AuthService } from 'src/app/shared/service/auth.service';
     IonIcon, 
     IonTabBar, 
     IonTabButton, 
+    RouterModule,
+    CommonModule
   ],
 })
 export class TabsFooterAppComponent  implements OnInit {
@@ -39,12 +42,15 @@ export class TabsFooterAppComponent  implements OnInit {
     const modalEventInstancia = document.getElementById('open-modal-instancia') as HTMLIonModalElement | null;
 
     if (modalEvent && this.currentUrl === '/eventos') {
-      console.log(modalEvent);
       modalEvent.present(); // Exibe o modal
     }
 
     if(modalEventInstancia && this.currentUrl === '/details'){
       modalEventInstancia.present(); // Exibe o modal
     }
-}
+  }
+
+  navLisPlayers() {
+    this.router.navigate(['/players']);
+  }
 }
