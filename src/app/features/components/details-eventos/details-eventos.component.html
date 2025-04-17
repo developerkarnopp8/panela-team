@@ -12,7 +12,7 @@
     <ion-item *ngFor="let instancia of evento">
       <ion-label>
         <ion-note *ngIf="isPast(instancia.endTime)" color="danger">
-          Game encerrado
+          Game encerrado  
         </ion-note>
         <ion-note *ngIf="!isPast(instancia.endTime)" color="green">
           Game aberto
