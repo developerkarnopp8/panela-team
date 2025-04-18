@@ -41,19 +41,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // window.addEventListener('beforeunload', this.handleBeforeUnload);
   }
   
   ngOnDestroy() {
-    // window.removeEventListener('beforeunload', this.handleBeforeUnload);
   }
-  
-  // handleBeforeUnload = (event: BeforeUnloadEvent) => {
-  //   this.authService.logout(); // Chama o método de logout do AuthService
-  //   // Aqui você pode salvar estado ou fazer um logout silencioso
-  //   console.log('A aba ou navegador foi fechada ou recarregada');
-  //   // Exemplo: salvar estado no localStorage ou notificar backend
-  // };
-  
-  
 }

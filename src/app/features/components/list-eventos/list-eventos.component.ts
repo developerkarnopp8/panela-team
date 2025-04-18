@@ -38,6 +38,7 @@ export class ListEventosComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
     this.getEventos();
+    sessionStorage.removeItem('evento')
   }
 
   async getEventos(){

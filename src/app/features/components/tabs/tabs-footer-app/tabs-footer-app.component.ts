@@ -4,12 +4,14 @@ import {
   IonIcon,
   IonTabBar,
   IonTabButton,
+  ToastController
 } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { addCircleSharp, basketball, listCircleSharp } from 'ionicons/icons';
 import { AuthService } from 'src/app/shared/service/auth.service';
+
 @Component({
   selector: 'app-tabs-footer-app',
   templateUrl: './tabs-footer-app.component.html',
@@ -22,12 +24,14 @@ import { AuthService } from 'src/app/shared/service/auth.service';
     CommonModule
   ],
 })
-export class TabsFooterAppComponent  implements OnInit {
+export class TabsFooterAppComponent implements OnInit {
+
   currentUrl: string = '';
-  exibirModalCorreto: boolean = true;
+
   constructor(
     private router: Router,
-    private authService : AuthService
+    private authService: AuthService,
+    private toastController: ToastController
   ) {
     this.router.events.subscribe(() => {
       this.currentUrl = this.router.url; 
@@ -42,15 +46,47 @@ export class TabsFooterAppComponent  implements OnInit {
     const modalEventInstancia = document.getElementById('open-modal-instancia') as HTMLIonModalElement | null;
 
     if (modalEvent && this.currentUrl === '/eventos') {
-      modalEvent.present(); // Exibe o modal
+      modalEvent.present();
     }
 
     if(modalEventInstancia && this.currentUrl === '/details'){
-      modalEventInstancia.present(); // Exibe o modal
+      modalEventInstancia.present();
     }
   }
 
+  async presentToast(message: string, duration: number) {
+    const toast = await this.toastController.create({
+      message,
+      duration,
+      icon: 'basketball',
+      position: 'bottom'
+    });
+
+    await toast.present();
+  }
+
+  isPast(endTime: string | Date): boolean {
+    return new Date(endTime) < new Date();
+  }
+
   navLisPlayers() {
-    this.router.navigate(['/players']);
+    const evento = JSON.parse(sessionStorage.getItem('evento') || '{}');
+    console.log('evento', evento);
+    
+    const gameAberto =  Object.keys(evento).length > 0 ? evento?.instances.find((instancia: any) => instancia.isOpen && !this.isPast(instancia.endTime) ) : false;
+    console.log('gameAberto', gameAberto);
+    ;
+
+    if (evento && Object.keys(evento).length > 0 && gameAberto) {
+      this.router.navigate(['/players']); 
+    }else {
+      if(!evento || Object.keys(evento).length === 0) {
+        this.presentToast('Escolha seu Game para jogar!', 3000);
+        return;
+      }else{
+        this.presentToast('Todos os Games estão fechados! ', 3000);
+        return;
+      }
+    }
   }
 }
