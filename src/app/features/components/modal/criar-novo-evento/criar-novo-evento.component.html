@@ -11,7 +11,7 @@
           </ion-toolbar>
         </ion-header>
         <ion-content class="ion-padding">
-          <ion-item>
+          <ion-item lines="none">
             <ion-input
               class="input"
               label="Nome do Evento"
@@ -22,7 +22,7 @@
               [(ngModel)]="this.registrarNewEvent.eventName"
             ></ion-input>
           </ion-item>
-          <ion-item>
+          <ion-item lines="none">
             <ion-textarea 
               class="ion-textarea"
               label="Descrição do Evento" 
@@ -33,7 +33,7 @@
             ></ion-textarea>
   
           </ion-item>
-          <ion-item>
+          <ion-item lines="none">
             <ion-label>Início Evento</ion-label>
             <ion-datetime-button datetime="iniciodatetime"></ion-datetime-button>
             <ion-modal [keepContentsMounted]="true">
@@ -44,7 +44,7 @@
             </ion-modal>     
           </ion-item>
   
-          <ion-item>
+          <ion-item lines="none">
             <ion-label>Fim Evento</ion-label>
             <ion-datetime-button datetime="fimdatetime"></ion-datetime-button>
             <ion-modal [keepContentsMounted]="true">
@@ -54,7 +54,7 @@
               </ng-template>
             </ion-modal>
           </ion-item>
-          <ion-item>
+          <ion-item lines="none">
             <ion-select 
               class="ion-select"
               labelPlacement="stacked" 

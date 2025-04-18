@@ -1,15 +1,23 @@
 <ion-content class="ion-padding">
-  <ion-item>
+  <ion-item lines="none">
     <ion-input
+      class="input"
       label="Email"
       labelPlacement="stacked"
       type="email"
+      fill="outline" 
       placeholder="gustavokarnopp.dev@gmail.com"
       [(ngModel)]="login.email"
     ></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input class="password" type="password" labelPlacement="stacked" label="Senha"[(ngModel)]="login.password">
+    <ion-input 
+      class="password input" 
+      type="password" 
+      labelPlacement="stacked" 
+      label="Senha"
+      fill="outline" 
+      [(ngModel)]="login.password">
       <ion-input-password-toggle slot="end"></ion-input-password-toggle>
     </ion-input>
   </ion-item>

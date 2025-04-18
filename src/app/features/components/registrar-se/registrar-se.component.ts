@@ -18,7 +18,6 @@ import {
 } from '@ionic/angular/standalone';
 import { IRegisterUserLeader } from './interface/IRegister';
 import { UsersEventoService } from 'src/app/shared/service/users.service';
-import { SubSink } from 'subsink';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
 

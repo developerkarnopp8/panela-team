@@ -1,3 +1,53 @@
-<p>
-  cadastro-player works!
-</p>
+<ion-content class="ion-padding">
+  <ion-item lines="none">
+    <ion-input
+      class="input"
+      label="Nome"
+      labelPlacement="stacked"
+      type="text"
+      placeholder="Nome do Leader"
+      [(ngModel)]="this.registrarUserPlayer.name"
+      fill="outline" 
+    ></ion-input>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-input
+      class="input"
+      label="Email"
+      labelPlacement="stacked"
+      type="email"
+      placeholder="leader@gmail.com"
+      [(ngModel)]="this.registrarUserPlayer.email"
+      fill="outline" 
+    ></ion-input>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-input 
+      class="password input" 
+      type="password" 
+      labelPlacement="stacked" 
+      label="Senha"
+      [(ngModel)]="this.registrarUserPlayer.password"
+      placeholder="*********"
+      fill="outline" 
+    >
+      <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+    </ion-input>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-input
+    disabled="true"
+      class="input"
+      label="Codigo de convite"
+      labelPlacement="stacked"
+      type="text"
+      fill="outline" 
+      placeholder="ASSDFD54663VF54SD5S"
+      [(ngModel)]="this.registrarUserPlayer.inviteCode"
+    ></ion-input>
+  </ion-item>
+  <div class="input-container"> 
+    <ion-button (click)="confirm()" shape="round" expand="block">Registrar Jogador</ion-button>
+  </div>
+</ion-content>
+

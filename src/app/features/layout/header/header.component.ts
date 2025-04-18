@@ -63,13 +63,15 @@ export class HeaderComponent  implements OnInit, OnChanges {
   
   validaRota() {
     this.verificaRota = this.currentUrl.includes('/iniciar') || 
-                        this.currentUrl.includes('/eventos');
+                        this.currentUrl.includes('/eventos') ||
+                        this.currentUrl.includes('/register-player');
   
     this.verificaRotaMenu = this.currentUrl.includes('/iniciar') || 
                             this.currentUrl.includes('/registrar') || 
                             this.currentUrl.includes('/login') ||
                             this.currentUrl.includes('/details') ||
-                            this.currentUrl.includes('/players');
+                            this.currentUrl.includes('/players') ||
+                            this.currentUrl.includes('/register-player');
 
   }
 

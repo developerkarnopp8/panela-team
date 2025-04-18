@@ -27,6 +27,9 @@ export class FooterComponent  implements OnInit, OnChanges {
   ngOnInit() {}
 
   ngOnChanges() {
-    this.verificaRota = this.currentUrl.includes('/iniciar') || this.currentUrl.includes('/login') || this.currentUrl.includes('/registrar');
+    this.verificaRota = this.currentUrl.includes('/iniciar')        ||
+                        this.currentUrl.includes('/login')          ||
+                        this.currentUrl.includes('/registrar')      ||
+                        this.currentUrl.includes('/register-player');
   }
 }
