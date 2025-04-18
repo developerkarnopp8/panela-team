@@ -60,9 +60,13 @@ export class CriarNovaInstanciaComponent  implements OnInit {
 
   ngOnInit() {
     const eventoFromSession = sessionStorage.getItem('evento');
-      if (eventoFromSession) {
-        this.event = JSON.parse(eventoFromSession);
-      }
+    if (eventoFromSession) {
+      this.event = JSON.parse(eventoFromSession);
+    }
+
+    const currentDate = new Date();
+    this.registrarNewInstancia.date = currentDate.toISOString().split('T')[0];
+
     console.log('CriarNovaInstanciaComponent ngOnInit', this.event);
     
   }
@@ -89,13 +93,36 @@ export class CriarNovaInstanciaComponent  implements OnInit {
   }
 
   updateStartTime(event: any) {
-    this.registrarNewInstancia.startTime = event.detail.value;
-  }
+    const timeValue = event.detail.value.includes('T') ? event.detail.value.split('T')[1] : event.detail.value;
+    
+    const [hours, minutes, seconds] = timeValue.split(':');
+    const [year, month, day] = this.registrarNewInstancia.date.split('T')[0].split('-');
 
+    const dateTime = new Date(Number(year), Number(month) - 1, Number(day), Number(hours), Number(minutes), Number(seconds || 0));
+  
+    if (!isNaN(dateTime.getTime())) {
+      this.registrarNewInstancia.startTime = dateTime.toISOString();
+    } else {
+      console.error('Data inválida gerada', dateTime);
+    }
+  }
+  
   updateEndTime(event: any) {
-    this.registrarNewInstancia.endTime = event.detail.value;
+    const timeValue = event.detail.value.includes('T') ? event.detail.value.split('T')[1] : event.detail.value;
+  
+    const [hours, minutes, seconds] = timeValue.split(':');
+    const [year, month, day] = this.registrarNewInstancia.date.split('T')[0].split('-');
+    
+    const dateTime = new Date(Number(year), Number(month) - 1, Number(day), Number(hours), Number(minutes), Number(seconds || 0));
+  
+    if (!isNaN(dateTime.getTime())) {
+      
+      this.registrarNewInstancia.endTime = dateTime.toISOString();
+    } else {
+      console.error('Data inválida gerada', dateTime);
+    }
   }
-
+  
   ngOnDestroy() {
 
     if (this.subscription) {

@@ -31,7 +31,7 @@
             </p>
         </ion-toggle>
       </ion-item>
-      <ion-button [disabled]="isPast(instancia.endTime)" size="small" >Ver mais</ion-button>
+      <ion-button [disabled]="isPast(instancia.endTime) || !instancia.isOpen" size="small" >Ver mais</ion-button>
     </ion-item>
   </ion-list>
 </ion-content>
