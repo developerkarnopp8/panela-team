@@ -1,11 +1,24 @@
 <ion-content class="ion-padding">
-  <p>
-    - AQUI MOSTRA OS JOGADORES JA CADASTRADO PARA O EVENTO
-    <br>
-    <br>
-    - GERA O LINK PARA OS JOGADORES SE CADASTRAREM NO EVENTO PELO CODE
-    <br>
-    <br>
-    - AQUI MOSTRA O LINK DO EVENTO PARA OS JOGADORES SE CADASTRAREM NO EVENTO
-  </p>
+  <ion-list [inset]="true" *ngFor="let players of playersUser;
+  ">
+    <ion-item [button]="true">
+      <ion-icon class="icon-bask" slot="start" name="basketball" size="large"></ion-icon>
+      <ion-label>{{ players.name }}</ion-label>
+      <ion-note>Tipo: {{ players.role }}</ion-note>
+    </ion-item>
+  </ion-list>
+
+
+  <ion-button id="open-loading" (click)="gerateLinkInvite()">
+    <ion-icon slot="start" name="basketball"></ion-icon>
+      Gerar Link de Convite
+    <ion-loading class="custom-loading" trigger="open-loading" message="Gerando invite..." [duration]="3000"></ion-loading>
+  </ion-button>
+
+  <ion-list *ngIf="linkInvite" [inset]="true">
+    <ion-item>
+      <ion-input aria-label="text" [(ngModel)]="linkInvite"></ion-input>
+    </ion-item>
+    <ion-button id="open-loading" (click)="copyLink()">Copiar Link</ion-button>
+  </ion-list>
 </ion-content>

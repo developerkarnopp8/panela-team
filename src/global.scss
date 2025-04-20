@@ -13,4 +13,11 @@ ion-item {
 ion-router-outlet {
     --ion-animation-duration: 0ms !important;
     --ion-page-transition: none !important;
-  }
+}
+
+ion-loading.custom-loading {
+    --background: var(--ion-color-primary-buttons-contrast);
+    --spinner-color: var(--ion-color-primary);
+
+    color: var(--ion-color-primary);
+}

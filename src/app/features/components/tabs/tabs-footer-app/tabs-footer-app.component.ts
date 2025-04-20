@@ -10,7 +10,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { addCircleSharp, basketball, listCircleSharp } from 'ionicons/icons';
-import { AuthService } from 'src/app/shared/service/auth.service';
 
 @Component({
   selector: 'app-tabs-footer-app',
@@ -29,9 +28,10 @@ export class TabsFooterAppComponent implements OnInit {
   currentUrl: string = '';
 
   constructor(
+
     private router: Router,
-    private authService: AuthService,
     private toastController: ToastController
+
   ) {
     this.router.events.subscribe(() => {
       this.currentUrl = this.router.url; 
@@ -42,7 +42,9 @@ export class TabsFooterAppComponent implements OnInit {
   ngOnInit() {}
 
   openModalNovo() {
+    
     const modalEvent = document.getElementById('open-modal-novo-game') as HTMLIonModalElement | null;
+
     const modalEventInstancia = document.getElementById('open-modal-instancia') as HTMLIonModalElement | null;
 
     if (modalEvent && this.currentUrl === '/eventos') {
@@ -71,14 +73,13 @@ export class TabsFooterAppComponent implements OnInit {
 
   navLisPlayers() {
     const evento = JSON.parse(sessionStorage.getItem('evento') || '{}');
-    console.log('evento', evento);
     
-    const gameAberto =  Object.keys(evento).length > 0 ? evento?.instances.find((instancia: any) => instancia.isOpen && !this.isPast(instancia.endTime) ) : false;
-    console.log('gameAberto', gameAberto);
-    ;
+    const gameAberto = Object.keys(evento).length > 0 ? evento?.instances.find((instancia: any) => instancia.isOpen && !this.isPast(instancia.endTime) ) : false;
 
     if (evento && Object.keys(evento).length > 0 && gameAberto) {
-      this.router.navigate(['/players']); 
+      this.router.navigate(['/players']);
+      // this.router.navigate(['/players'], { state: { evento } });
+      // sessionStorage.setItem('evento', JSON.stringify(evento));  
     }else {
       if(!evento || Object.keys(evento).length === 0) {
         this.presentToast('Escolha seu Game para jogar!', 3000);

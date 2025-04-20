@@ -29,18 +29,18 @@ export class UsersEventoService {
     return token
   }
 
-  //  //? GET ALL TODOS OS USER PELO ID
-  // getUsers(): Observable<any> {
-  //   const token = this.getTokenStorage();
-  //   const headers = { 'Authorization': `Bearer ${token}` };
-  //   return this.http.get<any>(`${environment.baseURL}${environment.basePath}`, { headers })
-  //   .pipe(
-  //     map(response => {
-  //       this.currentUserSubject.next(response);
-  //       return response;
-  //     })
-  //   );
-  // }
+   //? GET ALL TODOS OS USER players PELO ID
+  getUsersPlayers(eventId: any): Observable<any> {
+    const token = this.getTokenStorage();
+    const headers = { 'Authorization': `Bearer ${token}` };
+    return this.http.get<any>(`${environment.baseURL}${environment.basePath}/event/${eventId}`, { headers })
+    .pipe(
+      map(response => {
+        this.currentUserSubject.next(response);
+        return response;
+      })
+    );
+  }
 
   // //  //? GET ALL TODOS OS USER PELO ID
   // getUsersId(id: number): Observable<any> {
@@ -67,13 +67,6 @@ export class UsersEventoService {
         if (this.routes.url !== '/login') {
           this.routes.navigate(['/login'], { replaceUrl: true });
         }
-
-        // localStorage.setItem('canvas', JSON.stringify(user.user));
-        // sessionStorage.setItem('token', JSON.stringify(user.access_token))
-        // this.currentUserSubject.next(user);
-        // if (this.routes.url !== '/eventos') {
-        //   this.routes.navigate(['/eventos'], { replaceUrl: true });
-        // }
         return user;
       }));
   }
