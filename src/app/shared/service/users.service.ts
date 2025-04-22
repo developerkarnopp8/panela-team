@@ -55,12 +55,25 @@ export class UsersEventoService {
   //   );
   // }
 
-   //? POST ALL USERS ID OF CLIENT
+   //? POST ALL USERS lLEADER DO EVENTO
   createUserLeaderEvento(body: any) : Observable<any>  {
     const token = this.getTokenStorage()
     const headers = { 'Authorization': `Bearer ${token}`}
-    console.log(body, 'body');
     return this.http.post<any>(`${environment.baseURL}${environment.basePath}/leader-with-event`, body,{headers})
+    .pipe(
+      map(user => {
+        this.currentUserSubject.next(user);
+        if (this.routes.url !== '/login') {
+          this.routes.navigate(['/login'], { replaceUrl: true });
+        }
+        return user;
+      }));
+  }
+
+  //? POST ALL USERS PLAYER DO EVENTO
+   createUserPlayersEvento(body: any) : Observable<any>  {
+    console.log(body, 'body');
+    return this.http.post<any>(`${environment.baseURL}${environment.basePath}`, body)
     .pipe(
       map(user => {
         this.currentUserSubject.next(user);

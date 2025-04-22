@@ -28,10 +28,10 @@ export class InviteService {
   }
 
    //? GET ALL TODOS OS INVITES
-  getInvite(): Observable<any> {
+  getInvite(inviteCode: any): Observable<any> {
     const token = this.getTokenStorage();
-    const headers = { 'Authorization': `Bearer ${token}` };
-    return this.http.get<any>(`${environment.baseURL}${environment.basePath}`, { headers })
+    const headers = {'Authorization': `Bearer ${token}`};
+    return this.http.get<any>(`${environment.baseURL}${environment.basePath}/invites/${inviteCode}`, { headers })
     .pipe(
       map(response => {
         this.currentUserSubject.next(response);

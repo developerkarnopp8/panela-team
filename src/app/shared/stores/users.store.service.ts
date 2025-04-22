@@ -24,7 +24,6 @@ export class UsersPlayersStoreService {
     this.eventosUserPlayersSubject.next([...userPlayers, user]);
   }
 
-
   limparEventos() {
     this.eventosUserPlayersSubject.next([]);
   }

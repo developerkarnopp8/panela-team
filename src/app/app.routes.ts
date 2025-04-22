@@ -54,7 +54,7 @@ export const routes: Routes = [
     title: 'Todos os Jogadores',
   },
   {
-    path: 'register-player',
+    path: 'register-player/:playerId',
     pathMatch: 'full',
     component: CadastroPlayerComponent,
     title: 'Cadastro de Jogadores',

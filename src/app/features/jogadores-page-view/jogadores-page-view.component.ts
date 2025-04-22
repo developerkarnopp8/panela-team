@@ -71,14 +71,14 @@ export class JogadoresPageViewComponent  implements OnInit {
     this.subscription = this.inviteStoreService.invite$.subscribe((invite: any) => {
       console.log(invite, 'invite code');
       if (invite && invite.code) {
-        this.linkInvite = `https://www.eventos.com/invites/invites/${invite.code}`;
+        this.linkInvite = `http://localhost:8100/register-player/${invite.code}`;
         console.log(this.linkInvite, 'link invite');
       } else {
         console.error('Invite does not have a code property');
       }
     }); 
   }
-  
+
   copyLink() {
     // O link que você deseja copiar
     const link = this.linkInvite;
